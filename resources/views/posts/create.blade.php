@@ -26,6 +26,8 @@
 
     <form action="/posts/post-create" method="POST">
         @csrf
+        <label for="title">ID:</label><br>
+        <input class="" type="text" id="post_id" name="post_id"><br><br>
         <label for="title">Title:</label><br>
         <input class="" type="text" id="title" name="title"><br><br>
         <label for="content">Content:</label><br>
