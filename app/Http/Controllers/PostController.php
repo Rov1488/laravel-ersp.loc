@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use Illuminate\Http\Request as Request;
 
 class PostController extends Controller
 {
@@ -21,6 +21,10 @@ class PostController extends Controller
 
     public function create()
     {
+        if (request()->post()) {
+            //dd(\request()->post());
+            return response()->json(\request()->post());
+        }
         return view('posts.create');
     }
 

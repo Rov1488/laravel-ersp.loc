@@ -24,7 +24,7 @@
 
     <h1>Form for ADD POST</h1><br>
 
-    <form action="/posts/post-create" method="POST">
+    <form action="/posts/create" method="POST">
         @csrf
         <label for="title">ID:</label><br>
         <input class="" type="text" id="post_id" name="post_id"><br><br>
