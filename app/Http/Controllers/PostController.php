@@ -6,7 +6,7 @@ use Illuminate\Http\Request as Request;
 
 class PostController extends Controller
 {
-    public function Post()
+    public function index()
     {
         return view('posts.post');
     }
@@ -19,13 +19,17 @@ class PostController extends Controller
         return view('posts.show')->with('post_id', $post_id)->with('title', $title);
     }
 
-    public function create()
+    public function create(Request $request)
     {
-        if (request()->post()) {
+        if ($request->isMethod('post') && !empty($request->post())) {
             //dd(\request()->post());
-            return response()->json(\request()->post());
+            $result = $request->post();
+            //return $request->json($request->post());
+            return view('posts.create', ['result' => $result]);
         }
-        return view('posts.create');
+            return view('posts.create');
+
+
     }
 
     public function store(Request $request)
