@@ -27,7 +27,7 @@ class PostController extends Controller
             //return $request->json($request->post());
             return view('posts.create', ['result' => $result]);
         }
-            return view('posts.create');
+        return view('posts.create');
 
 
     }
@@ -36,7 +36,6 @@ class PostController extends Controller
     {
         dd($request);
     }
-
 
 
 }

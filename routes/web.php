@@ -18,7 +18,8 @@ Route::get('/posts/show/{post_id}/{title}', [PostController::class, 'show']);
 Route::addRoute(['GET', 'POST'], '/posts/create', [PostController::class, 'create']);
 Route::post('/posts/post-create', [PostController::class, 'store']);
 
-Route::resource('products', [ProductController::class]);
+//Route::resource('products', [ProductController::class]);
+Route::resource('products', ProductController::class, ['only' => ['index', 'show']]);
 
 
 
