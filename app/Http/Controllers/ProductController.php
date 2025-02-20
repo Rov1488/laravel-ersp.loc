@@ -19,7 +19,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        return view('products.create');
     }
 
     /**
@@ -27,7 +27,7 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return view('products.store');
     }
 
     /**
@@ -35,7 +35,7 @@ class ProductController extends Controller
      */
     public function show(string $id)
     {
-        //
+        return view('products.show');
     }
 
     /**
@@ -43,7 +43,7 @@ class ProductController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        return view('products.edit');
     }
 
     /**
@@ -51,7 +51,7 @@ class ProductController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        return view('products.edit');
     }
 
     /**
@@ -59,6 +59,6 @@ class ProductController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        //TDDO: Implement destroy method
     }
 }
