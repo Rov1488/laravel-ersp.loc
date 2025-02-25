@@ -10,3 +10,7 @@ Route::get('/user', function (Request $request) {
 Route::get('/products', function () {
     return view('products.index');
 })->middleware('auth:sanctum');
+
+Route::get('/products/show/{id}', function () {
+    return view('products.show');
+})->middleware('auth:sanctum');

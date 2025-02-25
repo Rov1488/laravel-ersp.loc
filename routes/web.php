@@ -22,12 +22,39 @@ Route::get('/', [\App\Http\Controllers\PageController::class, 'main']);
 
 Route::get('customer', [CustomerController::class, 'index']);
 Route::get('posts', [PostController::class, 'index']);
+//Параметры и внедрение зависимостей
 Route::get('/posts/show/{post_id}/{title}', [PostController::class, 'show']);
+//Необязательные параметры примеры
+Route::get('/user/{name?}', function (?string $name = null) {
+    return $name;
+});
+Route::get('/user/{name?}', function (?string $name = 'John') {
+    return $name;
+});
+//Ограничения регулярных выражений
+Route::get('/user/{name}', function (string $name) {
+    return $name;
+})->where('name', '[A-Za-z]+');
+
+Route::get('/user/{id}', function (string $id) {
+    return $id;
+})->where('id', '[0-9]+');
+
+Route::get('/user/{id}', function (string $id) {
+    return $id;
+})->whereUuid('id');
+
+Route::get('/category/{category}', function (string $category) {
+    return $category;
+})->whereIn('category', ['movie', 'song', 'painting']);
+
+
+
 //Route::get('/posts/create', [PostController::class, 'create']);
 Route::addRoute(['GET', 'POST'], '/posts/create', [PostController::class, 'create']);
 Route::post('/posts/post-create', [PostController::class, 'store']);
 
-Route::resource('products', ProductController::class, ['only' => ['index', 'show', 'create', 'store', 'edit', 'update', 'destroy']]);
+Route::resource('products', ProductController::class);
 
 //Route::redirect('/posts', '/posts/show/1/Hello-World', 301);
 

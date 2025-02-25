@@ -41,9 +41,19 @@ class ProductController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($id) : mixed
     {
-        return view('products.show');
+        if (isset($id)) {
+            $result = [
+                'id' => $id,
+                'name' => 'Product with id '. $id,
+                'description' => 'Description for product with id '. $id
+            ];
+            return view('products.show')->with('product', $result);
+        }else{
+            return response()->json(['message' => 'Product not found'], 404);
+        }
+
     }
 
     /**
