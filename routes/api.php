@@ -2,15 +2,19 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\UserController;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
-Route::get('/products', function () {
+/*Route::get('/products', function () {
     return view('products.index');
 })->middleware('auth:sanctum');
 
 Route::get('/products/show/{id}', function () {
     return view('products.show');
-})->middleware('auth:sanctum');
+})->middleware('auth:sanctum');*/
+
+Route::get('/users', [UserController::class, 'index']);
+Route::post('/users', [UserController::class, 'store']);

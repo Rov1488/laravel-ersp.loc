@@ -53,10 +53,10 @@ Route::get('/category/{category}', function (string $category) {
 //Route::get('/posts/create', [PostController::class, 'create']);
 Route::addRoute(['GET', 'POST'], '/posts/create', [PostController::class, 'create']);
 Route::post('/posts/post-create', [PostController::class, 'store']);
-
 Route::resource('products', ProductController::class);
 
 //Route::redirect('/posts', '/posts/show/1/Hello-World', 301);
+
 
 
 
