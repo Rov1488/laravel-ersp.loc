@@ -16,6 +16,10 @@ Route::options($uri, $callback);*/
 
 Route::get('/', [\App\Http\Controllers\PageController::class, 'main']);
 
+/*Route::get('/', function () {
+    return view('welcome');
+});*/
+
 /*Route::get('/my-page', function () {
     return "Hello World";
 });*/
