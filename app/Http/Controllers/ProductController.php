@@ -18,8 +18,8 @@ class ProductController extends Controller
                 ['id' => 3, 'name' => 'Product 3'],
             ]
         ];
-        //return view('products.index', compact('data'));
-        return $data;
+        return view('products.index', compact('data'));
+        //return $data;
     }
 
     /**

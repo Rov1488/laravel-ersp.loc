@@ -3,6 +3,7 @@
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProductController;
+use App\Http\Middleware\EnsureTokenIsValid;
 use Illuminate\Support\Facades\Route;
 
     /*Доступные методы маршрутизатора
@@ -57,7 +58,23 @@ Route::get('/category/{category}', function (string $category) {
 //Route::get('/posts/create', [PostController::class, 'create']);
 Route::addRoute(['GET', 'POST'], '/posts/create', [PostController::class, 'create']);
 Route::post('/posts/post-create', [PostController::class, 'store']);
-Route::resource('products', ProductController::class);
+//Route::resource('products', ProductController::class);
+//Route with controller
+Route::controller( ProductController::class)->group(function () {
+    Route::get('products', 'index');
+    Route::get('products/create', 'create');
+    Route::post('products', 'store');
+    Route::get('products/{id}', 'show');
+    Route::get('products/edit/{id}', 'edit');
+    Route::put('products/update/{id}', 'update');
+    Route::delete('products/delete/{id}', 'destroy');
+});
+
+
+//Middleware in Laravel
+Route::get('/profile', function () {
+    return "Profile checking with middleware";
+})->middleware(EnsureTokenIsValid::class);
 
 //Route::redirect('/posts', '/posts/show/1/Hello-World', 301);
 

@@ -14,7 +14,11 @@ return Application::configure(basePath: dirname(__DIR__))
         //apiPrefix: 'api/admin',
     )
     ->withMiddleware(function (Middleware $middleware) {
-        //
+        $middleware->append([
+            \App\Http\Middleware\AfterMiddleware::class,
+            \App\Http\Middleware\BeforeMiddleware::class,
+            \App\Http\Middleware\AfterMiddleware::class
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //
