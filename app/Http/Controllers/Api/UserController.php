@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\Api\SwaggerController;
 use Illuminate\Http\Request;
 
-class UserController extends Controller
+class UserController extends SwaggerController
 {
     /**
      * @OA\Get(

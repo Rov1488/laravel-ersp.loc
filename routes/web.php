@@ -3,6 +3,7 @@
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\TestController;
 use App\Http\Middleware\EnsureTokenIsValid;
 use Illuminate\Support\Facades\Route;
 
@@ -69,6 +70,9 @@ Route::controller( ProductController::class)->group(function () {
     Route::put('products/update/{id}', 'update');
     Route::delete('products/delete/{id}', 'destroy');
 });
+//HTTP Requests and HTTP Responses template
+Route::any('test', [TestController::class, 'create'])->name('test');
+Route::get('/test-response',[TestController::class, 'testResponse']);
 
 
 //Middleware in Laravel
