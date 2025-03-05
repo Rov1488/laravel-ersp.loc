@@ -70,9 +70,11 @@ Route::controller( ProductController::class)->group(function () {
     Route::put('products/update/{id}', 'update');
     Route::delete('products/delete/{id}', 'destroy');
 });
+
 //HTTP Requests and HTTP Responses template
-Route::any('test', [TestController::class, 'create'])->name('test');
-Route::get('/test-response',[TestController::class, 'testResponse']);
+Route::get('test', [TestController::class, 'create'])->name('test');
+Route::post('test', [TestController::class, 'create'])->name('test');
+Route::get('/test-responses', [TestController::class, 'testResponses'])->name('test-responses');
 
 
 //Middleware in Laravel

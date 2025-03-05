@@ -12,17 +12,46 @@ class TestController extends Controller
 
     public function create(Request $request)
     {
-        if ($request->isMethod('post') && !empty($request->post())) {
-            $input = $request->post();
-            return view('test-responses', compact('input'));
+        /**Rules validation
+         * $request->validate([
+         * 'title' => 'required|max:255',
+         * 'body' => 'required',
+         * 'type' => 'in:post,page',
+         * ]);*/
+
+        if ($request->isMethod('post')) {
+            // Валидация данных
+            $validated = $request->validate([
+                'username' => 'required|max:255',
+                'first_name' => 'required|max:255',
+                'last_name' => 'required|max:255',
+                'created_at' => 'required',
+                //'created_at' => 'required|date format:d-m-Y H:i:s',
+                //'upload' => 'safe',
+                //'type' => 'in:post,page',
+            ]);
+            // Обработка файлов ДО редиректа
+            if ($request->hasFile('upload')) {
+                $image = $request->file('upload');
+                $image->store('public'); // Сохраняем файл
+            }
+            // Сохраняем данные в сессию для следующего запроса
+            $request->session()->flash('formData', $validated);
+
+            // Редирект без передачи данных в URL
+            return redirect()->route('test-responses');
         }
-        //$data = $request->fullUrlWithoutQuery(['type']);
+
         return view('create');
     }
 
-    public function testResponse(Request $request, $data = null)
+    public function testResponses(Request $request)
     {
-        $result = $request->post();
-        return view('test-responses', ['input' => $result]);
+        // Получаем данные из сессии
+        $data = $request->session()->get('formData');
+
+        // Передаем данные в представление
+        return view('test-responses', ['input' => $data]);
+
     }
 }

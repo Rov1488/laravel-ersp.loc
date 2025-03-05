@@ -6,8 +6,10 @@
 
 <div class="container">
     <div class="col-md-6"></div>
-    <form action="{{ route('test') }}" method="post" role="form">
+    <form action="{{ route('test') }}" method="post" role="form" enctype="multipart/form-data">
+
         @csrf
+
         <div class="form-group">
             <label>Username</label>
             <input type="text" name="username" id="username" value="" class="form-control" required>
@@ -23,6 +25,10 @@
         <div class="form-group">
             <label>Create datetime</label>
             <input type="datetime-local" name="created_at" id="created_at" value="" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label>File</label>
+            <input type="file" name="upload" id="upload" class="form-control" value="" multiple required>
         </div>
         <div class="form-group">
             <button type="submit" name="send" id="send" class="btn btn-primary">Send</button>
