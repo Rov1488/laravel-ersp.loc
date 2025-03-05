@@ -33,7 +33,7 @@ class TestController extends Controller
             // Обработка файлов ДО редиректа
             if ($request->hasFile('upload')) {
                 $image = $request->file('upload');
-                $image->store('public'); // Сохраняем файл
+                $image->store('public/uploads'); // Сохраняем файл
             }
             // Сохраняем данные в сессию для следующего запроса
             $request->session()->flash('formData', $validated);
@@ -53,5 +53,10 @@ class TestController extends Controller
         // Передаем данные в представление
         return view('test-responses', ['input' => $data]);
 
+    }
+
+    public function test(){
+        $records = [1,2,3,4,5,6,7,8,9,10];
+        return view('test', ['records' => $records]);
     }
 }

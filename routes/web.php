@@ -5,6 +5,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\TestController;
 use App\Http\Middleware\EnsureTokenIsValid;
+use App\Livewire\Counter;
 use Illuminate\Support\Facades\Route;
 
     /*Доступные методы маршрутизатора
@@ -75,6 +76,9 @@ Route::controller( ProductController::class)->group(function () {
 Route::get('test', [TestController::class, 'create'])->name('test');
 Route::post('test', [TestController::class, 'create'])->name('test');
 Route::get('/test-responses', [TestController::class, 'testResponses'])->name('test-responses');
+Route::get('/test-page', [TestController::class, 'test'])->name('test-page');
+
+Route::get('/counter', Counter::class);
 
 
 //Middleware in Laravel
