@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request as Request;
+use function Laravel\Prompts\note;
 
 class PostController extends Controller
 {
@@ -23,17 +24,20 @@ class PostController extends Controller
     {
         if ($request->isMethod('post') && !empty($request->post())) {
             //dd(\request()->post());
-            $result = $request->post();
+            $result = 'success';
             //return $request->json($request->post());
+            return view('posts.create', ['result' => $result]);
+        }elseif(empty($request->post())) {
+            $result = 'error';
             return view('posts.create', ['result' => $result]);
         }
         return view('posts.create');
-
 
     }
 
     public function store(Request $request)
     {
+
         dd($request);
     }
 

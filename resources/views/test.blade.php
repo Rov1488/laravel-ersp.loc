@@ -26,3 +26,27 @@ Hello, @{{ $name }}.
 @else
     <br> I don't have any records!
 @endif
+
+@php
+    $isActive = true;
+    $hasError = true;
+@endphp
+
+<span @class([
+    'p-4',
+    'font-bold' => $isActive,
+    'text-gray-500' => ! $isActive,
+    'bg-red' => $hasError,
+])></span>
+
+<span class="p-4 text-gray-500 bg-red">Salom</span>
+
+
+<x-accordion>
+    <x-accordion.item>
+        К счастью, Blade позволяет вам размещать файл, соответствующий имени каталога компонента, в самом каталоге компонента.
+        Когда этот шаблон существует, он может быть отображен как «корневой» элемент компонента, даже если он вложен в каталог.
+        Таким образом, мы можем продолжать использовать тот же синтаксис Blade, который приведен в примере выше;
+        однако мы скорректируем нашу структуру каталогов следующим образом:
+    </x-accordion.item>
+</x-accordion>

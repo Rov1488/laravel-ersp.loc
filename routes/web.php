@@ -58,7 +58,7 @@ Route::get('/category/{category}', function (string $category) {
 
 
 //Route::get('/posts/create', [PostController::class, 'create']);
-Route::addRoute(['GET', 'POST'], '/posts/create', [PostController::class, 'create']);
+Route::addRoute(['GET', 'POST'], '/posts/create', [PostController::class, 'create'])->block($lockSeconds = 10, $waitSeconds = 10);
 Route::post('/posts/post-create', [PostController::class, 'store']);
 //Route::resource('products', ProductController::class);
 //Route with controller

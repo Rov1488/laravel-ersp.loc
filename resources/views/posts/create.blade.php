@@ -22,12 +22,12 @@
 <body class="antialiased">
 <div class="antialiased">
 
+
     <h1>Form for ADD POST</h1><br>
 
     @if(!empty($result))
-       <?php //print_r($result)?>
-        @dump($result)
-        {{--@switch($result)
+
+        @switch($result)
             @case('success')
             <div class="alert alert-success">
                 <strong>Success!</strong> Post has been added successfully.
@@ -44,7 +44,7 @@
             <div class="alert alert-danger">
                 <strong>Error!</strong> Something went wrong. Please try again.
             </div>
-        @endswitch--}}
+        @endswitch
 
     @endif
 
