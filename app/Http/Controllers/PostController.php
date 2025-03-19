@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request as Request;
 use function Laravel\Prompts\note;
+use Illuminate\Support\Facades\Validator;
 
 class PostController extends Controller
 {
@@ -37,6 +38,20 @@ class PostController extends Controller
 
     public function store(Request $request)
     {
+
+        /*
+         * Условно добавляемые правила
+        * Пропуск проверки, если поля имеют определенные значения
+        * Иногда вы можете захотеть не проверять заданное поле, если другое поле имеет заданное значение.
+        * Вы можете сделать это с помощью exclude_ifправила проверки.
+        * В этом примере поля appointment_dateи doctor_nameне будут проверяться,
+        * если has_appointmentполе имеет значение false:
+         * */
+        $validator = Validator::make($request->all(), [
+            'has_appointment' => 'required|boolean',
+            'appointment_date' => 'exclude_if:has_appointment,false|required|date',
+            'doctor_name' => 'exclude_if:has_appointment,false|required|string',
+        ]);
 
         dd($request);
     }
