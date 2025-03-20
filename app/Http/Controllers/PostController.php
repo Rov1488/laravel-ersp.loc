@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request as Request;
+use Illuminate\Support\Facades\DB;
 use function Laravel\Prompts\note;
 use Illuminate\Support\Facades\Validator;
 
@@ -52,6 +53,8 @@ class PostController extends Controller
             'appointment_date' => 'exclude_if:has_appointment,false|required|date',
             'doctor_name' => 'exclude_if:has_appointment,false|required|string',
         ]);
+
+
 
         dd($request);
     }

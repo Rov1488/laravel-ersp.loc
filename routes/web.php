@@ -7,6 +7,7 @@ use App\Http\Controllers\TestController;
 use App\Http\Middleware\EnsureTokenIsValid;
 use App\Livewire\Counter;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\QueryController;
 
     /*Доступные методы маршрутизатора
 Маршрутизатор позволяет регистрировать маршруты, которые отвечают на любой HTTP-команду:
@@ -79,7 +80,7 @@ Route::get('/test-responses', [TestController::class, 'testResponses'])->name('t
 Route::get('/test-page', [TestController::class, 'test'])->name('test-page');
 
 Route::get('/counter', Counter::class);
-
+Route::get('db-practice', [QueryController::class, 'index'])->name('db-practice');
 
 //Middleware in Laravel
 Route::get('/profile', function () {
@@ -87,6 +88,7 @@ Route::get('/profile', function () {
 })->middleware(EnsureTokenIsValid::class);
 
 //Route::redirect('/posts', '/posts/show/1/Hello-World', 301);
+
 
 
 

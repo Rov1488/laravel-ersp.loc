@@ -20,7 +20,7 @@
     @endif
 </head>
 <body class="antialiased">
-<div class="antialiased">
+<div class="antialiased basis-100% flex flex-col items-center justify-center min-h-screen bg-gray-50">
 
     <p class="text-center text-3xl font-semibold">Show Post ID: </p> <b>{{$user_id}}</b>
     <p class="text-center text-3xl font-semibold"><b>{{$title}}</b></p>
