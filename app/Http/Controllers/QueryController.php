@@ -17,7 +17,7 @@ class QueryController extends Controller
 
         //$users = DB::table('users')->get();
         $users = DB::table('users')->where('name', 'John')->firstOrFail();
-
+        $titles = DB::table('users')->pluck('name');
 
 
         return $users;
