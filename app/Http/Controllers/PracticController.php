@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class QueryController extends Controller
+class PracticController extends Controller
 {
     public function index()
     {
@@ -20,7 +20,7 @@ class QueryController extends Controller
         $titles = DB::table('users')->pluck('name');
 
 
-        return $users;
+        return view('db-practice', ['users' => $users, 'titles' => $titles]);
 
     }
 }
