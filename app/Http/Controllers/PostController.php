@@ -2,16 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\PostCollection;
+use App\Models\Post;
 use Illuminate\Http\Request as Request;
 use Illuminate\Support\Facades\DB;
 use function Laravel\Prompts\note;
 use Illuminate\Support\Facades\Validator;
+use function MongoDB\BSON\toJSON;
 
 class PostController extends Controller
 {
     public function index()
     {
-        return view('posts.post');
+       $applicant = new PostCollection(Post::paginate(10));
+        return $applicant;
     }
 
     public function show(Request $request, int $post_id, string $title)
