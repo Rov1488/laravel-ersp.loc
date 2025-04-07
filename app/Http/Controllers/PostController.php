@@ -15,7 +15,7 @@ class PostController extends Controller
     public function index()
     {
        $applicant = new PostCollection(Post::paginate(10));
-        return $applicant;
+        return $applicant; //->toJson(JSON_PRETTY_PRINT)
     }
 
     public function show(Request $request, int $post_id, string $title)

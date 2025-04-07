@@ -22,4 +22,4 @@ Route::get('/products/show/{id}', function () {
 Route::get('/users', [UserController::class, 'index']);
 Route::post('/users', [UserController::class, 'store']);
 
-Route::get('/posts', [PostController::class, 'index']);
+Route::get('/posts', [PostController::class, 'index']); //->middleware('auth:basic')

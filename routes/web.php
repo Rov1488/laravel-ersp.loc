@@ -27,9 +27,11 @@ Route::get('/', [\App\Http\Controllers\PageController::class, 'main']);
 /*Route::get('/my-page', function () {
     return "Hello World";
 });*/
-
+Route::get('login', function () {
+    return view('auth.login');
+})->name('login');
 Route::get('customer', [CustomerController::class, 'index']);
-Route::get('posts', [PostController::class, 'index']);
+Route::get('posts', [PostController::class, 'index'])->middleware('auth:basic'); //->middleware('auth:basic') ->middleware('auth:sanctum')
 //Параметры и внедрение зависимостей
 Route::get('/posts/show/{post_id}/{title}', [PostController::class, 'show']);
 //Необязательные параметры примеры
