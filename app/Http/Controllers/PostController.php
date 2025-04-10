@@ -49,7 +49,7 @@ class PostController extends Controller
         * Пропуск проверки, если поля имеют определенные значения
         * Иногда вы можете захотеть не проверять заданное поле, если другое поле имеет заданное значение.
         * Вы можете сделать это с помощью exclude_ifправила проверки.
-        * В этом примере поля appointment_dateи doctor_nameне будут проверяться,
+        * В этом примере поля appointment_dateи doctor_name не будут проверяться,
         * если has_appointmentполе имеет значение false:
          * */
         $validator = Validator::make($request->all(), [
