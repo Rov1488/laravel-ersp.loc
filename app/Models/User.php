@@ -23,6 +23,7 @@ class User extends Authenticatable
         'password',
     ];
 
+
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -45,4 +46,40 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function isAdmin(): bool
+    {   
+        return $this->role === 'admin';
+    }
+
+    public function isUser(): bool
+    {
+        return $this->role === 'user';
+    }
+    
+    public function isGuest(): bool
+    {
+        return $this->role === 'guest';
+    }
+    public function isSuperAdmin(): bool
+    {
+        return $this->role === 'superadmin';
+    }
+    public function isModerator(): bool
+    {
+        return $this->role === 'moderator';
+    }
+    public function isAuthor(): bool
+    {
+        return $this->role === 'author';
+    }
+    public function isSubscriber(): bool
+    {
+        return $this->role === 'subscriber';
+    }
+    public function isEditor(): bool
+    {
+        return $this->role === 'editor';
+    }
+
 }

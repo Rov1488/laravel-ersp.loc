@@ -9,13 +9,15 @@ use Illuminate\Support\Facades\DB;
 use function Laravel\Prompts\note;
 use Illuminate\Support\Facades\Validator;
 use function MongoDB\BSON\toJSON;
+use App\Events\OrderShipmentStatusUpdated;
 
 class PostController extends Controller
 {
     public function index()
     {
        $applicant = new PostCollection(Post::paginate(10));
-        return $applicant; //->toJson(JSON_PRETTY_PRINT)
+        //return $applicant; //->toJson(JSON_PRETTY_PRINT)
+        return view('posts.index', ['applicant' => $applicant]);
     }
 
     public function show(Request $request, int $post_id, string $title)

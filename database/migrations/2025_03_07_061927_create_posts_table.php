@@ -20,10 +20,11 @@ return new class extends Migration
             $table->text('description');
             $table->text('content');
             $table->string('image')->nullable();
-            $table->unsignedBigInteger('user_id');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->unsignedBigInteger('author_id');
             $table->timestamps();
-            $table->foreign('author_id')->references('id')->on('users');
+            // $table->foreign('author_id')->references('id')->on('users');
+        
 
 
         });

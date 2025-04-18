@@ -1,93 +1,74 @@
-<!DOCTYPE html>
-<html lang="en">
+{{-- <x-auth>
+    <x-slot:title>
+        Login
+    </x-slot:title> --}}
+    <section class="vh-100" style="background-color: hsl(0, 0%, 96%);">
+        <div class="container py-5 h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                    <div class="card shadow-2-strong" style="border-radius: 1rem;">
+                        <div class="card-body p-5 text-center">
 
-<head>
-    <meta charset="utf-8">
-    <title>Klean - Cleaning Services Website Template</title>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta content="Free HTML Templates" name="keywords">
-    <meta content="Free HTML Templates" name="description">
+                            <h3 class="mb-5">Sign in</h3>
+                            <form action="{{route('authenticate')}}" method="post">
+                                @csrf
+                                <div data-mdb-input-init class="form-outline mb-4">
+                                    <label class="form-label float-left" for="typeEmailX-2">Email</label>
+                                    <input type="email" name="email" id="email" class="form-control form-control-lg @error('email') is-invalid @enderror"/>
+                                    @error('email')
+                                    <p class="help-block text-danger">{{ $message }}</p>
+                                    {{--<div class="alert alert-danger"></div>--}}
+                                    @enderror
+                                </div>
 
-    <!-- Favicon -->
-    <link href="img/favicon.ico" rel="icon">
+                                <div data-mdb-input-init class="form-outline mb-4">
+                                    <label class="form-label float-left" for="typePasswordX-2">Password</label>
+                                    <input type="password" name="password" id="password" class="form-control form-control-lg @error('password') is-invalid @enderror"/>
+                                    @error('password')
+                                    <p class="help-block text-danger">{{ $message }}</p>
+                                    {{--<div class="alert alert-danger"></div>--}}
+                                    @enderror
 
-    <!-- Google Web Fonts -->
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+                                </div>
 
-    <!-- Font Awesome -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+                                <!-- Checkbox -->
+                                <div class="form-check d-flex justify-content-start mb-4">
+                                    <input class="form-check-input" type="checkbox" value="" id="remember"
+                                           name="remember"/>
+                                    <label class="form-check-label" for="form1Example3"> Remember password </label>
+                                </div>
 
-    <!-- Libraries Stylesheet -->
-    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-    <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+                                <button data-mdb-button-init data-mdb-ripple-init
+                                        class="btn btn-primary btn-lg btn-block" type="submit" name="login">Login
+                                </button>
+                                <br>
+                                <!-- Register -->
+                                {{--<div class="form-check d-flex justify-content-center mb-4">
+                                    <a class="form-check-input"
+                                       style="color: blue; border: 1px solid darkgrey; padding: 10px; margin-top: -10px; border-radius: 5px; background-color: #a0aec0;"
+                                       href="{{route('register')}}">Sign Up</a><br>
+                                </div>--}}
+                                <div class="text-center pt-4 text-muted">Don't have an account? <a href="#">Sign up</a></div>
 
-    <!-- Customized Bootstrap Stylesheet -->
-    <link href="css/style.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-</head>
+                                <hr class="my-4">
 
-<body>
-<div class="container col-md-6">
-  <h2 class="text-center">Login</h2>
-  <p class="text-center">Please enter your credentials to login.</p>
-  <!-- Default form login -->
-<form>
-    <!-- Email input -->
-    <div data-mdb-input-init class="form-outline mb-4">
-      <input type="email" id="form2Example1" class="form-control" />
-      <label class="form-label" for="form2Example1">Email address</label>
-    </div>
-  
-    <!-- Password input -->
-    <div data-mdb-input-init class="form-outline mb-4">
-      <input type="password" id="form2Example2" class="form-control" />
-      <label class="form-label" for="form2Example2">Password</label>
-    </div>
-  
-    <!-- 2 column grid layout for inline styling -->
-    <div class="row mb-4">
-      <div class="col d-flex justify-content-center">
-        <!-- Checkbox -->
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" value="" id="form2Example31" checked />
-          <label class="form-check-label" for="form2Example31"> Remember me </label>
+                               {{-- <button data-mdb-button-init data-mdb-ripple-init
+                                        class="btn btn-lg btn-block btn-primary" style="background-color: #dd4b39;"
+                                        type="submit"><i class="fab fa-google me-2"></i> Sign in with google
+                                </button>
+                                <button data-mdb-button-init data-mdb-ripple-init
+                                        class="btn btn-lg btn-block btn-primary mb-2" style="background-color: #3b5998;"
+                                        type="submit"><i class="fab fa-facebook-f me-2"></i>Sign in with facebook
+                                </button>--}}
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-  
-      <div class="col">
-        <!-- Simple link -->
-        <a href="#!">Forgot password?</a>
-      </div>
-    </div>
-  
-    <!-- Submit button -->
-    <button  type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-block mb-4">Sign in</button>
-  
-    <!-- Register buttons -->
-    <div class="text-center">
-      <p>Not a member? <a href="#!">Register</a></p>
-      <p>or sign up with:</p>
-      <button  type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-link btn-floating mx-1">
-        <i class="fab fa-facebook-f"></i>
-      </button>
-  
-      <button  type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-link btn-floating mx-1">
-        <i class="fab fa-google"></i>
-      </button>
-  
-      <button  type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-link btn-floating mx-1">
-        <i class="fab fa-twitter"></i>
-      </button>
-  
-      <button  type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-link btn-floating mx-1">
-        <i class="fab fa-github"></i>
-      </button>
-    </div>
-  </form>
-</div>
+    </section>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-</body>
+{{-- </x-auth> --}}
 
-</html>
+

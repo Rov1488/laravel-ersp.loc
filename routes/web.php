@@ -27,11 +27,19 @@ Route::get('/', [\App\Http\Controllers\PageController::class, 'main']);
 /*Route::get('/my-page', function () {
     return "Hello World";
 });*/
-Route::get('login', function () {
-    return view('auth.login');
-})->name('login');
+
+Route::get('login', [\App\Http\Controllers\AuthController::class, 'login'])->name('login');
+Route::post('authenticate', [\App\Http\Controllers\AuthController::class, 'authenticate'])->name('authenticate');
+Route::get('register', [\App\Http\Controllers\AuthController::class, 'register'])->name('register');
+Route::get('register-store', [\App\Http\Controllers\AuthController::class, 'registerStore'])->name('register-store');
+Route::get('logout', [\App\Http\Controllers\AuthController::class, 'logout'])->name('logout');
+
+Route::get('pulse', function () {
+    return view('pulse.dashboard');
+})->name('pulse');
+
 Route::get('customer', [CustomerController::class, 'index']);
-Route::get('posts', [PostController::class, 'index'])->middleware('auth:basic'); //->middleware('auth:basic') ->middleware('auth:sanctum')
+Route::get('posts', [PostController::class, 'index']); //->middleware('auth:basic')  ->middleware('auth:basic') ->middleware('auth:sanctum')
 //Параметры и внедрение зависимостей
 Route::get('/posts/show/{post_id}/{title}', [PostController::class, 'show']);
 //Необязательные параметры примеры

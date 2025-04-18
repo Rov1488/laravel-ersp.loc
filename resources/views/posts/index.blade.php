@@ -22,8 +22,14 @@
 <body class="antialiased">
 <div class="antialiased">
     <h1 class="text-center text-3xl font-semibold">Post view test</h1>
-
-
+{{-- @php
+    $a = 455;
+    $b = 'a';
+    echo $$b    
+@endphp --}}
+<pre>
+<?php var_dump($applicant) ?>
+</pre>
 </div>
 </body>
 </html>
