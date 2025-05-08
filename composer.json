@@ -8,6 +8,7 @@
     "require": {
         "php": "^8.3",
         "ext-pdo": "*",
+        "avadim/fast-excel-writer": "^6.5",
         "darkaonline/l5-swagger": "^9.0",
         "filament/filament": "^3.2",
         "laravel/framework": "^12.0",

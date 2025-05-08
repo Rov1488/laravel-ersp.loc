@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\ExportController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\TestController;
@@ -96,6 +97,8 @@ Route::get('/counter', Counter::class);
 Route::get('/profile', function () {
     return "Profile checking with middleware";
 })->middleware(EnsureTokenIsValid::class);
+
+Route::get('/excel-export', [ExportController::class, 'excelExport'])->name('excel-export');
 
 //Route::redirect('/posts', '/posts/show/1/Hello-World', 301);
 
