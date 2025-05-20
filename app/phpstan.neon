@@ -1,0 +1,6 @@
+parameters:
+    level: 0 # Уровень строгости (0–9)
+    paths:
+        - "C:/OSPanel/home/laravel-ersp.loc/app"     # Путь к вашим исходникам
+    excludePaths:
+        - tests   # Исключить папку tests
