@@ -99,6 +99,7 @@ Route::get('/profile', function () {
 })->middleware(EnsureTokenIsValid::class);
 
 Route::get('/excel-export', [ExportController::class, 'excelExport'])->name('excel-export');
+Route::get('/excel-export-grok', [ExportController::class, 'excelExportGrok'])->name('excel-export-grok');
 
 //Route::redirect('/posts', '/posts/show/1/Hello-World', 301);
 

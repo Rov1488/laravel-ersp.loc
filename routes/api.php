@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ExportController;
 use App\Http\Controllers\PostController;
 use App\Http\Resources\PostCollection;
 use Illuminate\Http\Request;
@@ -23,3 +24,5 @@ Route::get('/users', [UserController::class, 'index']);
 Route::post('/users', [UserController::class, 'store']);
 
 Route::get('/posts', [PostController::class, 'index']); //->middleware('auth:basic')
+Route::get('/excel-export-grok', [ExportController::class, 'excelExportGrok'])->name('excel-export-grok');
+Route::get('/excel-export-spreadsheet', [ExportController::class, 'createExelSpreadsheet'])->name('excel-export-spreadsheet');
