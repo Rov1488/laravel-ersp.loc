@@ -125,14 +125,25 @@ class ExportController extends Controller
 
     }
 
-    public function createExelSpreadsheet()
+    /**
+     * Test use template excel file
+     */
+    public function createUseExcelTemplate()
+    {
+        $excel = Excel::create('template');
+    }
+
+    /**
+     *Use test create excel file with PHPSpreadsheet packagist
+    */
+    public function createExcelSpreadsheet()
     {
         // Увеличиваем лимиты в начале метода
-       // ini_set('memory_limit', '8024M');  // Лимит оперативной памяти
-       // set_time_limit(6600);  // Максимальное время выполнения (1 час)
+        ini_set('memory_limit', '8024M');  // Лимит оперативной памяти
+        set_time_limit(6600);  // Максимальное время выполнения (1 час)
 
         $query = Post::select('id', 'title', 'slug', 'category_id', 'language', 'description', 'content', 'image', 'user_id', 'author_id', 'created_at')
-            ->orderBy('created_at', 'desc');
+            ->orderBy('created_at', 'desc')->limit(5000);
         $spreadsheet = new Spreadsheet();
         $sheet = $spreadsheet->getActiveSheet();
         $sheet->setCellValue('A1', 'ID');
@@ -177,6 +188,7 @@ class ExportController extends Controller
         }
 
     }
+
 
 
 }

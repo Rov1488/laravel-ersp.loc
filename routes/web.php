@@ -7,6 +7,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\TestController;
 use App\Http\Middleware\EnsureTokenIsValid;
 use App\Livewire\Counter;
+use Firebase\JWT\JWT;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PracticController;
 
@@ -102,6 +103,23 @@ Route::get('/excel-export', [ExportController::class, 'excelExport'])->name('exc
 Route::get('/excel-export-grok', [ExportController::class, 'excelExportGrok'])->name('excel-export-grok');
 
 //Route::redirect('/posts', '/posts/show/1/Hello-World', 301);
+
+Route::get('/metabase-dashboard', function () {
+    $secretKey = env('METABASE_SECRET_KEY');
+    $siteUrl = env('METABASE_SITE_URL');
+
+    $payload = [
+        'resource' => ['dashboard' => 2],
+        'params' => (object)[],
+        'exp' => now()->addMinutes(120)->timestamp
+    ];
+
+    $token = JWT::encode($payload, $secretKey, 'HS256');
+
+    $iframeUrl = "$siteUrl/embed/dashboard/$token#bordered=true&titled=true";
+
+    return view('metabase_dashboard', compact('iframeUrl'));
+})->name('metabase-dashboard');
 
 
 

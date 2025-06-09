@@ -25,4 +25,5 @@ Route::post('/users', [UserController::class, 'store']);
 
 Route::get('/posts', [PostController::class, 'index']); //->middleware('auth:basic')
 Route::get('/excel-export-grok', [ExportController::class, 'excelExportGrok'])->name('excel-export-grok');
-Route::get('/excel-export-spreadsheet', [ExportController::class, 'createExelSpreadsheet'])->name('excel-export-spreadsheet');
+Route::get('/excel-export-template', [ExportController::class, 'createUseExcelTemplate'])->name('excel-export-template');
+Route::get('/excel-export-spreadsheet', [ExportController::class, 'createExcelSpreadsheet'])->name('excel-export-spreadsheet');

@@ -60,9 +60,6 @@ class PostController extends Controller
             'doctor_name' => 'exclude_if:has_appointment,false|required|string',
         ]);
 
-
-
-        dd($request);
     }
 
 
