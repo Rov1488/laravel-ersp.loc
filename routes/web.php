@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\ExportController;
+use App\Http\Controllers\OSGOPCalculatorController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\TestController;
@@ -116,11 +117,13 @@ Route::get('/metabase-dashboard', function () {
 
     $token = JWT::encode($payload, $secretKey, 'HS256');
 
-    $iframeUrl = "$siteUrl/embed/dashboard/$token#bordered=true&titled=true";
+    $iframeUrl = "$siteUrl/embed/dashboard/$token#bordered=false&titled=true";
 
     return view('metabase_dashboard', compact('iframeUrl'));
 })->name('metabase-dashboard');
 
+Route::get('/osgop-form', [OSGOPCalculatorController::class, 'showForm'])->name('osgop-form');
+Route::any('/osgop-calculator', [OSGOPCalculatorController::class, 'calculate'])->name('osgop-calculate');
 
 
 
