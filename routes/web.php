@@ -125,6 +125,15 @@ Route::get('/metabase-dashboard', function () {
 Route::get('/osgop-form', [OSGOPCalculatorController::class, 'showForm'])->name('osgop-form');
 Route::any('/osgop-calculator', [OSGOPCalculatorController::class, 'calculate'])->name('osgop-calculate');
 
+Route::any('/form-bk', function (){
+    return view('napp-license.form-bk');
+})->name('form-bk');
+
+Route::get('/rating-progress', function () {
+    return view('rating-progress');
+})->name('rating-progress');
+
+
 
 
 
