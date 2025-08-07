@@ -15,6 +15,10 @@ class PostController extends Controller
 {
     public function index()
     {
+        // session_start();
+        // $_SESSION['username']= 'Ivan Ivanov';
+        // $session_id = session_id();
+        // dd($_SESSION);
        $applicant = new PostCollection(Post::paginate(10));
         //return $applicant; //->toJson(JSON_PRETTY_PRINT)
         return view('posts.index', ['applicant' => $applicant]);

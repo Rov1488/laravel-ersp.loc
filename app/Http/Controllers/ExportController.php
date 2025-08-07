@@ -7,8 +7,10 @@ use Illuminate\Http\Request;
 use avadim\FastExcelWriter\Excel;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
+use PhpOffice\PhpSpreadsheet\Calculation\Statistical\Distributions\F;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+use setasign\Fpdi\Tcpdf\Fpdi;
 
 class ExportController extends Controller
 {
@@ -16,7 +18,7 @@ class ExportController extends Controller
     public function excelExport()
     {
         $post = Post::select('id', 'title', 'slug', 'category_id', 'language', 'description', 'content', 'image', 'user_id', 'author_id', 'created_at')
-        ->orderBy('created_at', 'desc');
+            ->orderBy('created_at', 'desc');
         //$post = Post::cursor();
 
         //dd($posts->id);
@@ -55,7 +57,7 @@ class ExportController extends Controller
         $area->setValue('K5', $post->created_at);
         $sheet->writeAreas();
 
-        $excel->save('expor-file_'.now()->format('Y-m-d_His').'.xlsx');
+        $excel->save('expor-file_' . now()->format('Y-m-d_His') . '.xlsx');
 
         return view('export-file.export');
     }
@@ -84,7 +86,7 @@ class ExportController extends Controller
             ->setValue('K4', 'Created date')
         ;
         $sheet->writeAreas();
-       $query = Post::select('id', 'title', 'slug', 'category_id', 'language', 'description', 'content', 'image', 'user_id', 'author_id', 'created_at')
+        $query = Post::select('id', 'title', 'slug', 'category_id', 'language', 'description', 'content', 'image', 'user_id', 'author_id', 'created_at')
             ->orderBy('created_at', 'desc')->limit(100000);
 
         foreach ($query->cursor() as $post) {
@@ -101,15 +103,14 @@ class ExportController extends Controller
                 $post->author_id,
                 $post->created_at->format('Y-m-d H:i:s')
             ]);
-
         }
         try {
             // Save the file to storage
 
-           // Storage::disk('local')->put('public/', $filePath);
+            // Storage::disk('local')->put('public/', $filePath);
             // Optionally, return the file for download
             //$downloadFile = $excel->download('post'. now()->format('Ymd_His') . '.xlsx')
-            if($excel->save('post'. now()->format('Ymd_His') . '.xlsx')){
+            if ($excel->save('post' . now()->format('Ymd_His') . '.xlsx')) {
                 return response('success excel file generation good');
             }
 
@@ -117,12 +118,10 @@ class ExportController extends Controller
             /*return view('export-file.export', [
                 'downloadLink' => $downloadFile
             ]);*/
-
         } catch (\Throwable $e) {
             Log::error('Export failed: ' . $e->getMessage());
             return back()->withError('Export failed');
         }
-
     }
 
     /**
@@ -135,7 +134,7 @@ class ExportController extends Controller
 
     /**
      *Use test create excel file with PHPSpreadsheet packagist
-    */
+     */
     public function createExcelSpreadsheet()
     {
         // Увеличиваем лимиты в начале метода
@@ -173,22 +172,46 @@ class ExportController extends Controller
             $row++;
         }
         $writer = new Xlsx($spreadsheet);
-        $fileName = 'post'. now()->format('Ymd_His') . '.xlsx';
+        $fileName = 'post' . now()->format('Ymd_His') . '.xlsx';
         $filePath = storage_path("app/public/{$fileName}");
         try {
-            if($writer->save($filePath)){
+            if ($writer->save($filePath)) {
 
                 return response('success excel file generation good');
-            }else{
+            } else {
                 return response('error excel file generation good');
             }
         } catch (\Throwable $e) {
             Log::error('Export failed: ' . $e->getMessage());
             return back()->withError('Export failed');
         }
-
     }
 
+    public function generatePdf()
+    {
+        $pdf = new FPDI();
 
-
+        // Установка версии PDF ДО добавления страницы!
+        $pdf->setPDFVersion('1.7');
+        $templatedFile = storage_path('app/public/mayning_ruxsatnoma_shablon (1).pdf'); // mayning_ruxsatnoma_shablon.pdf
+        // Добавляем страницу из шаблона
+    $pageCount = $pdf->setSourceFile($templatedFile);
+    $templateId = $pdf->importPage(1); // импортируем первую страницу
+    
+    // Добавляем страницу в новый документ
+    $pdf->AddPage();
+    $pdf->useTemplate($templateId);   
+    // $pdf->setCreator('Laravel PDF Generator');
+    // $pdf->setAuthor('Your Name');
+    // $pdf->setTitle('Generated PDF');
+    // $pdf->setSubject('PDF Generation Example');
+    // Устанавливаем шрифт и добавляем текст
+    $pdf->SetFont('Helvetica');
+    $pdf->SetTextColor(0, 0, 0);
+    $pdf->SetXY(50, 50);
+    $pdf->Write(0, 'Hello World!');
+    
+    // Сохраняем или отдаем файл
+    return $pdf->Output('generated.pdf', 'I');        
+    }
 }

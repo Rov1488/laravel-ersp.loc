@@ -132,9 +132,11 @@ Route::any('/form-bk', function (){
 Route::get('/rating-progress', function () {
     return view('rating-progress');
 })->name('rating-progress');
+Route::get('/generate-pdf', [ExportController::class, 'generatePdf'])->name('generate-pdf');
 
-
-
+Route::get('/vertical-tab', function(){
+    return view('vertical-tab');
+})->name('vertical-tab');
 
 
 
