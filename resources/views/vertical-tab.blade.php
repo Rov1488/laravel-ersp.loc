@@ -42,6 +42,15 @@
             margin-right: 5px;*/
             border-left: #D6C980 3px solid; /*D6C980  00345C*/
             transition: background-color 0.2ms, border-left 0.3ms;
+            text-decoration-color: black solid 2px !important bold;
+        }
+
+        .tab.active>p{            
+            font-weight: bold;
+            font-size: 1em;
+            text-decoration: underline;
+            text-decoration-color: black;
+            color: #000508; /* Dark blue for active tab */
         }
 
        
