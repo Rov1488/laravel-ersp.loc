@@ -138,5 +138,8 @@ Route::get('/vertical-tab', function(){
     return view('vertical-tab');
 })->name('vertical-tab');
 
+Route::get('/license', function(){
+    return view('license');
+})->name('license');
 
 

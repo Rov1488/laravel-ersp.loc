@@ -47,8 +47,10 @@
 
         .tab.active>p{            
             font-weight: bold;
+            text-transform: uppercase;
             font-size: 1em;
-            text-decoration: underline;
+            /*text-decoration: underline;*/
+            border-bottom: 3px solid #3a06f7; /* D6C980 */        
             text-decoration-color: black;
             color: #000508; /* Dark blue for active tab */
         }
