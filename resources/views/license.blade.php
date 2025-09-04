@@ -81,18 +81,25 @@
             color: #083a63;
             /* тёмно-синий */
         }
-        .card:hover{
+
+        /* .card:hover {
             transform: translateY(-5px);
             transition: transform 0.3s ease;
-        }
-        .card-icon:hover {
-            border-color: #083a63;/*#083a63  #CAAF14*/
-            /* жёлтый */
+        } */
+
+        .card:hover, .card:hover .card-icon {
+            border-color: #CAAF14; /*CAAF14 #083a63*/
+            /*#083a63  #CAAF14*/
+            transform: translateY(-5px);
+            transition: transform 0.3s ease;
+            box-shadow: #CAAF14 0px 4px 15px;
         }
 
         .card-hover:hover {
+            border-color: #083a63;
             transform: translateY(-5px);
             transition: transform 0.3s ease;
+            box-shadow: #4da9f0 0px 4px 15px;
         }
 
         .card-hover:hover h3 {
@@ -219,10 +226,16 @@
                 style="background-color: #D2C988; text-[#D2C988] hight:var(--percent) width:var(--percent)">|</span>
             Виды лицензий и разрешительных документов по направлениям</p>
         <div class="bg-white border border-[#0B375B]/20 rounded-2xl p-8 shadow-md card-hover">
-            <h3 class="font-semibold text-xl text-[#D2C988]"><a href="#">Провайдеры услуг и оборот
-                    крипто-активов</a></h3>
-            <p class="pt-5 font-semibold text-lg text-[#0B375B]"><a href="#">Майнинг</a> | <a
-                    href="#">Крипто-биржи</a> | <a href="#">Крипто-магазины</a></p>
+            <div class="card-icon float-left box-content md:box-border">
+                <img src="{{ asset('storage/insurance-icon-png-chatGPT.png') }}" alt="Майнинг">
+                <!-- вставь сюда иконку -->
+            </div>
+            <div class="card-content ">
+                <h3 class="font-semibold text-xl text-[#D2C988]"><a href="#">Провайдеры услуг и оборот
+                        крипто-активов</a></h3>
+                <p class="pt-5 font-semibold text-lg text-[#0B375B]"><a href="#">Майнинг</a> | <a
+                        href="#">Крипто-биржи</a> | <a href="#">Крипто-магазины</a></p>
+            </div>
         </div>
         <div class="bg-white border border-[#0B375B]/20 rounded-2xl p-8 shadow-md card-hover">
             <h3 class="font-semibold text-xl text-[#239058]"><a href="#">Рынок капитала</a></h3>
@@ -244,13 +257,64 @@
 
         <div class="card">
             <div class="card-icon">
-                <img src="{{ asset('storage/insurance-icon-png-chatGPT.png') }}" alt="Майнинг"> <!-- вставь сюда иконку -->
+                <img src="{{ asset('storage/insurance-icon-png-chatGPT.png') }}" alt="Майнинг">
+                <!-- вставь сюда иконку -->
             </div>
-            <div class="card-content">
+            <div class="card-content ">
                 <div class="card-title">Майнинг</div>
                 <div class="card-subtitle">Деятельность по майнингу</div>
             </div>
         </div>
+
+        <div class="bg-white border border-[#0B375B]/20 rounded-2xl p-8"><a data-v-aee13e0b="" href="/uz/service/210"
+                class="serviceItem flex items-center text-[var(--font-color)] no-underline p-[15px] cursor-pointer sm:px-0"
+                tabindex="0"
+                title="Xorijiy davlatda ta'lim olganlik to'g'risidagi hujjatlarni tan olish va nostrifikatsiyalash (ekvivalentligini qayd etish)">
+                <div data-v-aee13e0b=""
+                    class="serviceIcon h-[48px] w-[48px] rounded-full flex items-center justify-center bg-[var(--element-bg)] relative p-[10px] transition-all duration-100 ease-linear">
+                    <img data-v-aee13e0b="" src="https://oldmy.gov.uz/fonts/flaticons/008-file-5.svg"
+                        class="w-full h-full" alt="*" aria-hidden="true"
+                        style="filter: brightness(0) saturate(100%) invert(61%) sepia(52%) saturate(369%) hue-rotate(150deg) brightness(97%) contrast(97%);">
+                </div>
+                <div data-v-aee13e0b="" class="description flex flex-col ml-[15px] flex-1">
+                    <p data-v-aee13e0b=""
+                        class="text-[var(--font-color)] font-medium text-[0.9375em] transition-all duration-100 ease-in m-0">
+                        Xorijiy davlatda ta'lim olganlik to'g'risidagi hujjatlarni tan olish va nostrifikatsiyalash
+                        (ekvivalentligini qayd etish)</p>
+                    <section data-v-aee13e0b="" class="flex items-center justify-between gap-2">
+                        <div data-v-aee13e0b="" class="flex text-[0.8125em] items-center mt-1 gap-2.5 relative">
+                            <div data-v-aee13e0b="" class="rate flex items-center gap-[4px]"
+                                title="Foydalanuvchilar tomonidan xizmatga qo'yilgan baho"
+                                aria-label="Foydalanuvchilar tomonidan xizmatga qo'yilgan baho"><svg
+                                    data-v-aee13e0b="" xmlns="http://www.w3.org/2000/svg" width="1em"
+                                    height="1em" viewBox="0 0 24 24" class="icon2"
+                                    style="width: 1em; height: 1em;">
+                                    <path fill="currentColor"
+                                        d="M12 2.5a1 1 0 0 1 .894.553l2.58 5.158l5.67.824a1 1 0 0 1 .554 1.706l-4.127 4.024l.928 5.674a1 1 0 0 1-1.455 1.044L12 18.807l-5.044 2.676a1 1 0 0 1-1.455-1.044l.928-5.674l-4.127-4.024a1 1 0 0 1 .554-1.706l5.67-.824l2.58-5.158A1 1 0 0 1 12 2.5zm0 3.236l-1.918 3.836a1 1 0 0 1-.75.543l-4.184.608l3.05 2.973a1 1 0 0 1 .289.878L7.8 18.771l3.731-1.98a1 1 0 0 1 .938 0l3.731 1.98l-.687-4.197a1 1 0 0 1 .289-.877l3.05-2.974l-4.183-.608a1 1 0 0 1-.75-.543L12 5.736z">
+                                    </path>
+                                </svg><span data-v-aee13e0b="">4.26</span></div>
+                            <div data-v-aee13e0b="" class="rate flex items-center gap-[4px]"
+                                title="Xizmatdan foydalanganlar soni" aria-label="Xizmatdan foydalanganlar soni"><svg
+                                    data-v-aee13e0b="" xmlns="http://www.w3.org/2000/svg" width="1em"
+                                    height="1em" viewBox="0 0 24 24" class="icon2"
+                                    style="width: 1em; height: 1em;">
+                                    <path fill="currentColor"
+                                        d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10s10-4.5 10-10S17.5 2 12 2m0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8s8 3.59 8 8s-3.59 8-8 8m4.59-12.42L10 14.17l-2.59-2.58L6 13l4 4l8-8l-1.41-1.42Z">
+                                    </path>
+                                </svg><span data-v-aee13e0b="">70.8K</span></div>
+                            <div data-v-aee13e0b="" class="rate flex items-center gap-[4px]"
+                                title="Ariza to'ldirish uchun ketadigan vaqt"
+                                aria-label="Ariza to'ldirish uchun ketadigan vaqt"><svg data-v-aee13e0b=""
+                                    xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
+                                    viewBox="0 0 24 24" class="icon2" style="width: 1em; height: 1em;">
+                                    <path fill="currentColor"
+                                        d="M12 20a8 8 0 0 0 8-8a8 8 0 0 0-8-8a8 8 0 0 0-8 8a8 8 0 0 0 8 8m0-18a10 10 0 0 1 10 10a10 10 0 0 1-10 10C6.47 22 2 17.5 2 12A10 10 0 0 1 12 2m.5 5v5.25l4.5 2.67l-.75 1.23L11 13V7h1.5Z">
+                                    </path>
+                                </svg><span data-v-aee13e0b="">12 daq.</span></div>
+                        </div><!---->
+                    </section>
+                </div>
+            </a></div>
     </section>
 
     <!-- Statistics with fixed-size charts -->
