@@ -21,11 +21,73 @@
         .nav-bg {
             background-color: #00345C;
             /* узор справа */
-            background-image: url("{{asset('storage/image3.png')}}");
+            background-image: url("{{ asset('storage/image3.png') }}");
             /* путь к твоему узору */
             background-repeat: no-repeat;
             background-position: 80% 25%;
             background-size: 180px auto;
+        }
+
+        /* Card styles */
+        .card {
+            display: flex;
+            align-items: center;
+            background-color: #fcfcfc;
+            /* чёрный фон */
+            color: white;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            padding: 20px 25px;
+            width: 550px;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Левая часть с иконкой */
+        .card-icon {
+            width: 70px;
+            height: 70px;
+            border: 2px solid #ccc;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            flex-shrink: 0;
+        }
+
+        .card-icon img {
+            width: 40px;
+            height: 40px;
+        }
+
+        /* Правая часть с текстом */
+        .card-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .card-title {
+            font-weight: bold;
+            font-size: 18px;
+            color: #d4c46b;
+            /* жёлтый */
+            margin-bottom: 6px;
+        }
+
+        .card-subtitle {
+            font-weight: bold;
+            font-size: 18px;
+            color: #083a63;
+            /* тёмно-синий */
+        }
+        .card:hover{
+            transform: translateY(-5px);
+            transition: transform 0.3s ease;
+        }
+        .card-icon:hover {
+            border-color: #083a63;/*#083a63  #CAAF14*/
+            /* жёлтый */
         }
 
         .card-hover:hover {
@@ -59,7 +121,7 @@
         .main-link:hover {
             color: #239058;
             text-decoration: underline;
-        }        
+        }
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
@@ -124,14 +186,17 @@
             <a href="#" class="btn"><span>+</span>Подать заявку</a>
         </div> --}}
         <nav class="nav-bg text-white">
-            <div class="max-w-7xl mx-auto flex justify-center gap-8 px-12 py-3 font-semibold uppercase text-base tracking-wide">
+            <div
+                class="max-w-7xl mx-auto flex justify-center gap-8 px-12 py-3 font-semibold uppercase text-base tracking-wide">
                 <div class="flex gap-8 pt-4">
-                <a href="#" class="main-link">Главная</a>
-                <a href="#" class="main-link">Реестр</a>
-                <a href="#" class="main-link">Мой кабинет</a>
-                <a href="#" class="main-link">Помощь</a>
+                    <a href="#" class="main-link">Главная</a>
+                    <a href="#" class="main-link">Реестр</a>
+                    <a href="#" class="main-link">Мой кабинет</a>
+                    <a href="#" class="main-link">Помощь</a>
                 </div>
-                <button class="bg-[#239058] text-white px-8 py-3 rounded-lg shadow-lg hover:bg-[#1d7a47] transition duration-300">Подать заявку</button>                
+                <button
+                    class="bg-[#239058] text-white px-8 py-3 rounded-lg shadow-lg hover:bg-[#1d7a47] transition duration-300">Подать
+                    заявку</button>
             </div>
         </nav>
     </header>
@@ -175,6 +240,16 @@
             <p class="pt-5 font-semibold text-lg text-[#0B375B]"><a href="#">Деятельность по организации
                     лотерей</a> | <a href="#">Деятельность по организации игр, основанных на риске, во всемирной
                     информационной сети Интернет</a> | <a href="#">Букмекерская деятельность</a></p>
+        </div>
+
+        <div class="card">
+            <div class="card-icon">
+                <img src="{{ asset('storage/insurance-icon-png-chatGPT.png') }}" alt="Майнинг"> <!-- вставь сюда иконку -->
+            </div>
+            <div class="card-content">
+                <div class="card-title">Майнинг</div>
+                <div class="card-subtitle">Деятельность по майнингу</div>
+            </div>
         </div>
     </section>
 
