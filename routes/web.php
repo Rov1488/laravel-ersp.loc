@@ -142,4 +142,24 @@ Route::get('/license', function(){
     return view('license');
 })->name('license');
 
+Route::get('/npk', function(){
+    return view('npk.npk-index');
+})->name('npk');
+
+Route::get('/npk-chart', function(){
+    return view('npk.npk-charts');
+})->name('npk-chart');
+
+Route::get('/docs-form', function(){
+    return view('npk.docs-form');
+})->name('docs-form');
+
+Route::get('/form-test', function(){
+    return view('npk.form-test');
+})->name('form-test');
+
+Route::get('/dopdocs-form', function(){
+    return view('npk.dopdocs-form');
+})->name('dopdocs-form');
+
 
