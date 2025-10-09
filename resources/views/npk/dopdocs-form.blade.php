@@ -1,403 +1,660 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Дополнительное соглашение к договору перестрахования</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="bg-gray-100 py-10">
-  <div class="max-w-5xl mx-auto bg-white p-8 rounded-lg shadow-lg">
-    <h1 class="text-2xl font-bold mb-6 text-center text-blue-700">
-      Форма добавления дополнительного соглашения к договору перестрахования
-    </h1>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Инфографика перестрахования</title>
 
-    <!-- Основные данные -->
-    <form id="agreementForm" class="space-y-6">
-      <section>
-        <h2 class="text-xl font-semibold mb-4 border-b pb-2 text-gray-800">1. Основная информация</h2>
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#004AAD',
+                        secondary: '#2563EB',
+                        accent: '#C7A33A',
+                    },
+                },
+            },
+        };
+    </script>
 
-        <div class="grid md:grid-cols-2 gap-4">
-          <div>
-            <label class="block text-sm font-medium">UUID договора перестрахования *</label>
-            <input type="text" name="reinsuranceContractUuid" class="mt-1 w-full border rounded p-2" required>
-          </div>
-          <div>
-            <label class="block text-sm font-medium">Номер доп. соглашения *</label>
-            <input type="text" name="additionalAgreementNumber" class="mt-1 w-full border rounded p-2" required>
-          </div>
-          <div>
-            <label class="block text-sm font-medium">Дата доп. соглашения * (в пределах отчетного квартала, до 25 числа следующего)</label>
-            <input type="date" name="additionalAgreementDate" class="mt-1 w-full border rounded p-2" required>
-          </div>
-          <div>
-            <label class="block text-sm font-medium">№ слипа</label>
-            <input type="text" name="slipNumber" class="mt-1 w-full border rounded p-2">
-          </div>
-          <div>
-            <label class="block text-sm font-medium">Дата слипа (в пределах отчетного квартала, до 25 числа следующего)</label>
-            <input type="date" name="slipDate" class="mt-1 w-full border rounded p-2">
-          </div>
-        </div>
-
-        <div class="mt-4">
-          <label class="block text-sm font-medium">Условия облигатора (отправлять вместе с другими условиями)</label>
-          <textarea name="obligatorCondition" class="mt-1 w-full border rounded p-2" rows="2"></textarea>
-        </div>
-
-        <div>
-          <label class="block text-sm font-medium">Другие условия облигатора (обязательно, если указано obligatorCondition)</label>
-          <textarea name="obligatorOtherCondition" class="mt-1 w-full border rounded p-2" rows="2"></textarea>
-        </div>
-      </section>
-
-      <!-- Период перестрахования -->
-      <section>
-        <h2 class="text-xl font-semibold mb-4 border-b pb-2 text-gray-800">2. Период перестрахования</h2>
-        <div class="grid md:grid-cols-2 gap-4">
-          <div>
-            <label class="block text-sm font-medium">Начало периода (в пределах отчетного квартала, до 25 числа следующего)</label>
-            <input type="date" name="reinsuranceStartDate" class="mt-1 w-full border rounded p-2">
-          </div>
-          <div>
-            <label class="block text-sm font-medium">Конец периода (только для активного договора или истекшего до 25 числа следующего)</label>
-            <input type="date" name="reinsuranceEndDate" class="mt-1 w-full border rounded p-2">
-          </div>
-        </div>
-      </section>
-
-      <!-- Финансовые параметры -->
-      <section>
-        <h2 class="text-xl font-semibold mb-4 border-b pb-2 text-gray-800">3. Финансовые параметры</h2>
-        <div class="grid md:grid-cols-3 gap-4">
-          <div>
-            <label class="block text-sm font-medium">Доля перестрахователя в ин. валюте (обязательно, если currencyId)</label>
-            <input type="number" name="reinsurantShareInForeignCurrency" class="mt-1 w-full border rounded p-2" step="0.01">
-          </div>
-          <div>
-            <label class="block text-sm font-medium">Доля перестрахователя в сум</label>
-            <input type="number" name="reinsurantShare" class="mt-1 w-full border rounded p-2" step="0.01">
-          </div>
-          <div>
-            <label class="block text-sm font-medium">Доля перестрахователя в %</label>
-            <input type="number" name="reinsurantShareInPercents" class="mt-1 w-full border rounded p-2" step="0.01">
-          </div>
-          <div>
-            <label class="block text-sm font-medium">Лимит перестраховщика в ин. валюте (обязательно, если currencyId)</label>
-            <input type="number" name="reinsurerLimitInForeignCurrency" class="mt-1 w-full border rounded p-2" step="0.01">
-          </div>
-          <div>
-            <label class="block text-sm font-medium">Лимит перестраховщика в сум</label>
-            <input type="number" name="reinsurerLimit" class="mt-1 w-full border rounded p-2" step="0.01">
-          </div>
-          <div>
-            <label class="block text-sm font-medium">Лимит перестраховщика в %</label>
-            <input type="number" name="reinsurerLimitInPercents" class="mt-1 w-full border rounded p-2" step="0.01">
-          </div>
-          <div>
-            <label class="block text-sm font-medium">Брутто перестраховочная премия в ин. валюте (обязательно, если currencyId)</label>
-            <input type="number" name="bruttoInsurancePremiumInForeignCurrency" class="mt-1 w-full border rounded p-2" step="0.01">
-          </div>
-          <div>
-            <label class="block text-sm font-medium">Брутто перестраховочная премия в сум</label>
-            <input type="number" name="bruttoInsurancePremium" class="mt-1 w-full border rounded p-2" step="0.01">
-          </div>
-          <div>
-            <label class="block text-sm font-medium">Брутто ставка в %</label>
-            <input type="number" name="bruttoInsurancePremiumInPercents" class="mt-1 w-full border rounded p-2" step="0.01">
-          </div>
-          <div>
-            <label class="block text-sm font-medium">Комиссия в ин. валюте (обязательно, если currencyId)</label>
-            <input type="number" name="commissionInForeignCurrency" class="mt-1 w-full border rounded p-2" step="0.01">
-          </div>
-          <div>
-            <label class="block text-sm font-medium">Комиссия в сум</label>
-            <input type="number" name="commission" class="mt-1 w-full border rounded p-2" step="0.01">
-          </div>
-          <div>
-            <label class="block text-sm font-medium">Комиссия в %</label>
-            <input type="number" name="commissionInPercents" class="mt-1 w-full border rounded p-2" step="0.01">
-          </div>
-          <div>
-            <label class="block text-sm font-medium">Нетто перестраховочная премия в ин. валюте (обязательно, если currencyId)</label>
-            <input type="number" name="nettoInsurancePremiumInForeignCurrency" class="mt-1 w-full border rounded p-2" step="0.01">
-          </div>
-          <div>
-            <label class="block text-sm font-medium">Нетто перестраховочная премия в сум</label>
-            <input type="number" name="nettoInsurancePremium" class="mt-1 w-full border rounded p-2" step="0.01">
-          </div>
-          <div>
-            <label class="block text-sm font-medium">Нетто ставка в %</label>
-            <input type="number" name="nettoInsurancePremiumInPercents" class="mt-1 w-full border rounded p-2" step="0.01">
-          </div>
-        </div>
-      </section>
-
-      <!-- Брокер и ковернот -->
-      <section>
-        <h2 class="text-xl font-semibold mb-4 border-b pb-2 text-gray-800">4. Брокерские параметры</h2>
-        <div class="grid md:grid-cols-3 gap-4">
-          <div>
-            <label class="block text-sm font-medium">Размер комиссии страхового брокера</label>
-            <input type="number" name="brokerCommission" class="mt-1 w-full border rounded p-2" step="0.01">
-          </div>
-          <div>
-            <label class="block text-sm font-medium">Размер комиссии брокера в ин. валюте</label>
-            <input type="number" name="brokerCommissionInForeignCurrency" class="mt-1 w-full border rounded p-2" step="0.01">
-          </div>
-          <div>
-            <label class="block text-sm font-medium">ID брокера</label>
-            <input type="text" name="brokerId" class="mt-1 w-full border rounded p-2">
-          </div>
-          <div>
-            <label class="block text-sm font-medium">№ ковернота (обязательно, если brokerId)</label>
-            <input type="text" name="covernoteNumber" class="mt-1 w-full border rounded p-2">
-          </div>
-          <div>
-            <label class="block text-sm font-medium">Дата ковернота (обязательно, если brokerId)</label>
-            <input type="date" name="covernoteDate" class="mt-1 w-full border rounded p-2">
-          </div>
-        </div>
-      </section>
-
-      <!-- Валюта и курс -->
-      <section>
-        <h2 class="text-xl font-semibold mb-4 border-b pb-2 text-gray-800">5. Валюта и курс</h2>
-        <div class="grid md:grid-cols-2 gap-4">
-          <div>
-            <label class="block text-sm font-medium">ID валюты (/api/references/currencies)</label>
-            <input type="text" name="currencyId" class="mt-1 w-full border rounded p-2">
-          </div>
-          <div>
-            <label class="block text-sm font-medium">Курс валюты (обязательно, если currencyId)</label>
-            <input type="number" name="exchangeRate" class="mt-1 w-full border rounded p-2" step="0.0001">
-          </div>
-        </div>
-      </section>
-
-      <!-- Начисления и оплаты -->
-      <section>
-        <h2 class="text-xl font-semibold mb-4 border-b pb-2 text-gray-800">6. Начисления и оплаты</h2>
-        <div class="grid md:grid-cols-3 gap-4">
-          <div>
-            <label class="block text-sm font-medium">Нетто перестраховочная премия для начисления</label>
-            <input type="number" name="nettoAccrualPremium" class="mt-1 w-full border rounded p-2" step="0.01">
-          </div>
-          <div>
-            <label class="block text-sm font-medium">Дата начисления</label>
-            <input type="date" name="nettoAccrualDate" class="mt-1 w-full border rounded p-2">
-          </div>
-          <div>
-            <label class="block text-sm font-medium">Комиссия для начисления</label>
-            <input type="number" name="nettoAccrualCommission" class="mt-1 w-full border rounded p-2" step="0.01">
-          </div>
-          <div>
-            <label class="block text-sm font-medium">Брутто перестраховочная премия для начисления</label>
-            <input type="number" name="bruttoAccrualPremium" class="mt-1 w-full border rounded p-2" step="0.01">
-          </div>
-          <div>
-            <label class="block text-sm font-medium">Срок оплаты 100% премии</label>
-            <input type="date" name="deadlineForFullPremiumPayment" class="mt-1 w-full border rounded p-2">
-          </div>
-          <div>
-            <label class="block text-sm font-medium">Сумма оплаченной премии</label>
-            <input type="number" name="paidPremium" class="mt-1 w-full border rounded p-2" step="0.01">
-          </div>
-          <div>
-            <label class="block text-sm font-medium">Дата оплаченной премии</label>
-            <input type="date" name="premiumPaidDate" class="mt-1 w-full border rounded p-2">
-          </div>
-          <div>
-            <label class="block text-sm font-medium">Тип оплаты (/api/references/payment-conditions)</label>
-            <input type="text" name="paymentTypeId" class="mt-1 w-full border rounded p-2">
-          </div>
-          <div>
-            <label class="block text-sm font-medium">Срок оплаты 1-го транша (обязательно, если paymentTypeId=9)</label>
-            <input type="date" name="firstPaymentDeadline" class="mt-1 w-full border rounded p-2">
-          </div>
-          <div>
-            <label class="block text-sm font-medium">Сумма оплаты 1-го транша (обязательно, если paymentTypeId=9)</label>
-            <input type="number" name="firstPaymentSum" class="mt-1 w-full border rounded p-2" step="0.01">
-          </div>
-          <div>
-            <label class="block text-sm font-medium">Дата оплаты 1-го транша (обязательно, если paymentTypeId=9)</label>
-            <input type="date" name="firstPaymentDate" class="mt-1 w-full border rounded p-2">
-          </div>
-          <div>
-            <label class="block text-sm font-medium">Сумма оплаченного 1-го транша (обязательно, если paymentTypeId=9)</label>
-            <input type="number" name="firstPaymentPaidSum" class="mt-1 w-full border rounded p-2" step="0.01">
-          </div>
-        </div>
-      </section>
-
-      <!-- Договоры -->
-      <section id="contractsSection">
-        <h2 class="text-xl font-semibold mb-4 border-b pb-2 text-gray-800 flex justify-between items-center">
-          7. Договоры
-          <button type="button" id="addContractBtn" class="bg-green-600 text-white px-4 py-1 rounded hover:bg-green-700">
-            + Добавить договор
-          </button>
-        </h2>
-        <div id="contractsContainer" class="space-y-4"></div>
-      </section>
-
-      <!-- Кнопки -->
-      <div class="flex gap-4 mt-8">
-        <button type="button" id="showJsonBtn" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
-          Показать JSON
-        </button>
-        <button type="reset" class="bg-gray-300 px-4 py-2 rounded hover:bg-gray-400">
-          Очистить
-        </button>
-      </div>
-    </form>
-
-    <!-- Error Messages -->
-    <div id="errorOutput" class="mt-8 bg-red-100 border border-red-400 rounded p-4 hidden">
-      <h3 class="font-semibold mb-2 text-red-800">Ошибки валидации:</h3>
-      <ul id="errorList" class="text-sm text-red-700 list-disc pl-5"></ul>
-    </div>
-
-    <!-- JSON Output -->
-    <div id="jsonOutput" class="mt-8 bg-gray-50 border rounded p-4 hidden">
-      <h3 class="font-semibold mb-2 text-gray-800">Сформированные данные:</h3>
-      <pre class="text-sm text-gray-700 overflow-auto"></pre>
-      <button type="button" id="hideJsonBtn" class="mt-4 bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700">
-        Скрыть JSON
-      </button>
-    </div>
-  </div>
-
-  <script>
-    const form = document.getElementById('agreementForm');
-    const addContractBtn = document.getElementById('addContractBtn');
-    const contractsContainer = document.getElementById('contractsContainer');
-    const showJsonBtn = document.getElementById('showJsonBtn');
-    const jsonOutput = document.getElementById('jsonOutput');
-    const hideJsonBtn = document.getElementById('hideJsonBtn');
-    const errorOutput = document.getElementById('errorOutput');
-    const errorList = document.getElementById('errorList');
-
-    // Функция для проверки даты на соответствие кварталу
-    function isDateAllowed(dateStr) {
-      if (!dateStr) return true;
-      const current = new Date('2025-10-09');
-      const d = new Date(dateStr);
-      const year = d.getFullYear();
-      const month = d.getMonth();
-      const quarter = Math.floor(month / 3) + 1;
-      let quarterStart, quarterEnd;
-      if (quarter === 1) {
-        quarterStart = new Date(year, 0, 1);
-        quarterEnd = new Date(year, 2, 31);
-      } else if (quarter === 2) {
-        quarterStart = new Date(year, 3, 1);
-        quarterEnd = new Date(year, 5, 30);
-      } else if (quarter === 3) {
-        quarterStart = new Date(year, 6, 1);
-        quarterEnd = new Date(year, 8, 30);
-      } else {
-        quarterStart = new Date(year, 9, 1);
-        quarterEnd = new Date(year, 11, 31);
-      }
-      if (d < quarterStart || d > quarterEnd) {
-        return false;
-      }
-      let nextQuarterYear = year;
-      let nextQuarterMonth = (quarter * 3) % 12;
-      if (nextQuarterMonth === 0) {
-        nextQuarterMonth = 0;
-        nextQuarterYear++;
-      }
-      const allowanceEnd = new Date(nextQuarterYear, nextQuarterMonth, 25);
-      if (current > allowanceEnd) {
-        return false;
-      }
-      return true;
-    }
-
-    // Валидация формы
-    function validateForm(data, contracts) {
-      const errors = [];
-
-      // Обязательные поля
-      if (!data.reinsuranceContractUuid) errors.push('UUID договора перестрахования обязателен');
-      if (!data.additionalAgreementNumber) errors.push('Номер доп. соглашения обязателен');
-      if (!data.additionalAgreementDate) errors.push('Дата доп. соглашения обязательна');
-      
-      // Условия облигатора
-      if (data.obligatorCondition && !data.obligatorOtherCondition) {
-        errors.push('Другие условия облигатора обязательны, если указаны условия облигатора');
-      }
-
-      // Валюта
-      if (data.currencyId) {
-        if (!data.exchangeRate) errors.push('Курс валюты обязателен, если указан ID валюты');
-        if (!data.reinsurantShareInForeignCurrency) errors.push('Доля перестрахователя в ин. валюте обязательна, если currencyId');
-        if (!data.reinsurerLimitInForeignCurrency) errors.push('Лимит перестраховщика в ин. валюте обязателен, если currencyId');
-        if (!data.bruttoInsurancePremiumInForeignCurrency) errors.push('Брутто перестраховочная премия в ин. валюте обязательна, если currencyId');
-        if (!data.commissionInForeignCurrency) errors.push('Комиссия в ин. валюте обязательна, если currencyId');
-        if (!data.nettoInsurancePremiumInForeignCurrency) errors.push('Нетто перестраховочная премия в ин. валюте обязательна, если currencyId');
-      }
-
-      // Брокер
-      if (data.brokerId) {
-        if (!data.covernoteNumber) errors.push('№ ковернота обязателен, если указан ID брокера');
-        if (!data.covernoteDate) errors.push('Дата ковернота обязательна, если указан ID брокера');
-      }
-
-      // Оплата
-      if (data.paymentTypeId === '9') {
-        if (!data.firstPaymentDeadline) errors.push('Срок оплаты 1-го транша обязателен, если paymentTypeId=9');
-        if (!data.firstPaymentSum) errors.push('Сумма оплаты 1-го транша обязательна, если paymentTypeId=9');
-        if (!data.firstPaymentDate) errors.push('Дата оплаты 1-го транша обязательна, если paymentTypeId=9');
-        if (!data.firstPaymentPaidSum) errors.push('Сумма оплаченного 1-го транша обязательна, если paymentTypeId=9');
-      }
-
-      // Даты с квартальными ограничениями
-      if (data.additionalAgreementDate && !isDateAllowed(data.additionalAgreementDate)) {
-        errors.push('Дата доп. соглашения не соответствует квартальным ограничениям');
-      }
-      if (data.slipDate && !isDateAllowed(data.slipDate)) {
-        errors.push('Дата слипа не соответствует квартальным ограничениям');
-      }
-      if (data.reinsuranceStartDate && !isDateAllowed(data.reinsuranceStartDate)) {
-        errors.push('Начало периода перестрахования не соответствует квартальным ограничениям');
-      }
-
-      // Валидация договоров
-      contracts.forEach((contract, index) => {
-        if (contract.isForeign === '1') {
-          if (!contract.contractNumber) errors.push(`Договор ${index + 1}: Номер договора обязателен для иностранного договора`);
-          if (contract.contractDelete !== '1') {
-            // Если не удаление, проверить другие поля для добавления/изменения
-            if (!contract.contractIssueDate) errors.push(`Договор ${index + 1}: Дата договора обязательна`);
-            if (!contract.insuranceFormId) errors.push(`Договор ${index + 1}: Форма страхования обязательна`);
-            if (!contract.insuranceProductName) errors.push(`Договор ${index + 1}: Наименование страхового продукта обязательно`);
-            if (!contract.insurantName) errors.push(`Договор ${index + 1}: Наименование страхователя обязательно`);
-            if (!contract.classes) errors.push(`Договор ${index + 1}: Классы страхования обязательны`);
-            if (!contract.foreignInsuranceOrgId && !contract.insuranceOrgId) errors.push(`Договор ${index + 1}: Страховщик обязателен`);
-            if (!contract.countryId) errors.push(`Договор ${index + 1}: Территория страхования обязательна`);
-            if (!contract.startDate) errors.push(`Договор ${index + 1}: Начало периода страхования обязательно`);
-            if (!contract.endDate) errors.push(`Договор ${index + 1}: Конец периода страхования обязательно`);
-            if (contract.currencyId) {
-              if (!contract.exchangeRate) errors.push(`Договор ${index + 1}: Курс валюты обязателен, если currencyId`);
-              if (!contract.insuranceSumInForeignCurrency) errors.push(`Договор ${index + 1}: Страховая сумма в ин. валюте обязательна, если currencyId`);
-            }
-          }
-        } else {
-          if (!contract.contractUuid) errors.push(`Договор ${index + 1}: UUID договора обязателен для местного договора`);
+    <!-- Chart.js и Lucide -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!--Flowbite-->
+    <link href="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.css" rel="stylesheet" />
+    <style>
+        body {
+            transition: background-color 0.4s ease, color 0.4s ease;
         }
-      });
 
-      return errors;
-    }
+        .chart-container {
+            width: 70%;
+            max-width: 900px;
+            height: 400px;
+            margin: 20px auto;
+            background: #1e293b;
+            /* чуть тёмный фон под стиль dashboard */
+            border-radius: 12px;
+            padding: 10px;
+        }
 
-    // Добавление договора
-    addContractBtn.addEventListener('click', () => {
-      const div = document.createElement('div');
-      div.className = "border p-4 rounded bg-gray-50 relative";
-      div.innerHTML = `
+        /* небольшой стиль для скролла блока contracts */
+        .contracts-list {
+            max-height: 420px;
+            overflow: auto;
+        }
+
+        .required {
+            color: #dc2626;
+            margin-left: .25rem;
+        }
+
+        /* red star */
+    </style>
+</head>
+
+<body class="bg-gray-50 dark:bg-gray-950 text-gray-800 dark:text-gray-100 transition-colors duration-300">
+
+    <div class="flex min-h-screen">
+
+        <!-- Sidebar -->
+        <aside class="w-64 bg-white dark:bg-gray-900 shadow-lg p-6 flex flex-col">
+            <div class="flex items-center mb-3">
+                <img src="{{ asset('storage/ChatGPT Image 6 окт. 2025 г., 14_53_17.png') }}" alt="Logo"
+                    width="60" height="60">
+                <span class="ml-3 text-[12px] text-center font-semibold text-primary dark:text-accent">Национальная
+                    перестраховочная компания Узбекистана</span>
+            </div>
+            <hr class="border-gray-300 dark:border-gray-700 mb-3 mt-0 pt-0 py-0">
+            <nav class="space-y-2">
+                <a href="#"
+                    class="flex items-center px-3 py-2 rounded-lg bg-primary/10 dark:bg-gray-800 text-primary dark:text-accent">
+                    <i data-lucide="layout-dashboard" class="w-5 h-5 mr-3"></i> Главная
+                </a>
+                <a href="#"
+                    class="flex items-center px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800">
+                    <i data-lucide="layers" class="w-5 h-5 mr-3"></i> Оферты
+                </a>
+                <a href="#"
+                    class="flex items-center px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800">
+                    <i data-lucide="file-signature" class="w-5 h-5 mr-3"></i> Договоры
+                </a>
+                <a href="#"
+                    class="flex items-center px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800">
+                    <i data-lucide="shield" class="w-5 h-5 mr-3"></i> Претензии
+                </a>
+                <a href="#"
+                    class="flex items-center px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800">
+                    <i data-lucide="handshake" class="w-5 h-5 mr-3"></i> Партнёры
+                </a>
+                <a href="#"
+                    class="flex items-center px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800">
+                    <i data-lucide="bar-chart-3" class="w-5 h-5 mr-3"></i> Отчёты
+                </a>
+            </nav>
+        </aside>
+        <!-- END Sidebar -->
+
+        <div class="flex flex-col flex-1 min-h-screen">
+
+            <!-- HEADER -->
+            <header
+                class="flex items-center justify-between bg-white px-6 py-3 border-b shadow-sm sticky top-0 dark:bg-gray-900 z-30">
+                <!-- Left: Logo + Название -->
+                <div class="flex items-center space-x-3 dark:bg-gray-900">
+                    {{-- <img src="{{ asset('storage/ChatGPT Image 6 окт. 2025 г., 14_53_17.png') }}" alt="Logo" class="w-10 h-10 rounded-full"> <div class="flex flex-col leading-tight"> 
+        <span class="text-xs font-semibold text-gray-700">Национальная</span> <span class="text-xs font-semibold text-gray-700">перестраховочная компания Узбекистана</span> 
+      </div> --}}
+                </div>
+                <!-- Left: Search -->
+                <div class="relative flex-1 max-w-lg">
+                    <input type="text" placeholder="Поиск..."
+                        class="w-full py-2 pl-10 pr-4 text-sm rounded-lg border border-gray-300 bg-gray-50 focus:ring-2 focus:ring-primary focus:outline-none" />
+                    <i data-lucide="search" class="absolute left-3 top-2.5 w-5 h-5 text-gray-400"></i>
+                </div>
+
+                <!-- Right: Controls -->
+                <div class="flex items-center space-x-4 ml-6">
+                    <!-- Theme -->
+                    <button id="theme-toggle"
+                        class="p-2 rounded-lg border border-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition">
+                        <i data-lucide="moon" class="w-5 h-5 text-gray-700 dark:text-gray-200"></i>
+                    </button>
+
+                    <!-- Language -->
+                    <button class="p-1.5 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition">
+                        <img src="https://flagcdn.com/w20/ru.png" alt="Русский" class="w-6 h-4 rounded" />
+                    </button>
+
+                    <!-- Profile dropdown trigger -->
+                    <div class="relative">
+                        <button id="profile-btn" class="flex items-center space-x-2 focus:outline-none">
+                            <img src="{{ asset('storage/ChatGPT Image 6 окт. 2025 г., 14_53_17.png') }}" alt="User"
+                                class="w-9 h-9 rounded-full border-2 border-green-500" />
+                            <span class="font-medium text-gray-800 dark:text-gray-200">R.Pulatov</span>
+                            <i data-lucide="chevron-down" class="w-4 h-4 text-gray-500"></i>
+                        </button>
+
+                        <!-- Dropdown -->
+                        <div id="profile-menu"
+                            class="absolute right-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 hidden">
+                            <ul class="py-2 text-sm text-gray-700 dark:text-gray-200">
+                                <li><a href="#"
+                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 transition">Профиль</a>
+                                </li>
+                                <li><a href="#"
+                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 transition">Настройки</a>
+                                </li>
+                                <li>
+                                    <hr class="border-gray-200 dark:border-gray-700 my-1">
+                                </li>
+                                <li><a href="#"
+                                        class="block px-4 py-2 text-red-600 hover:bg-gray-100 dark:hover:bg-gray-700 transition">Выход</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <!-- Затемнение фона при открытом меню -->
+            <div id="dropdown-overlay" class="hidden fixed inset-0 bg-black/40 z-20"></div>
+            <!-- END HEADER -->
+
+            <!-- Main -->
+            <main class="flex-1 p-8 overflow-y-auto">
+
+                <div class="mb-12">
+                    <h1 class="text-2xl font-semibold mb-4">Форма добавления дополнительного соглашения к договору
+                        перестрахования
+                    </h1>
+                    <!-- Форма создания доп.соглашения -->
+                    <!-- Основные данные -->
+                    <form id="agreementForm" class="space-y-6">
+                        <section>
+                            <h2 class="text-xl font-semibold mb-4 border-b pb-2 text-gray-800">1. Основная информация
+                            </h2>
+
+                            <div class="grid md:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-sm font-medium">UUID договора перестрахования *</label>
+                                    <input type="text" name="reinsuranceContractUuid"
+                                        class="mt-1 w-full border rounded p-2" required>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium">Номер доп. соглашения *</label>
+                                    <input type="text" name="additionalAgreementNumber"
+                                        class="mt-1 w-full border rounded p-2" required>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium">Дата доп. соглашения * (в пределах
+                                        отчетного квартала, до 25 числа следующего)</label>
+                                    <input type="date" name="additionalAgreementDate"
+                                        class="mt-1 w-full border rounded p-2" required>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium">№ слипа</label>
+                                    <input type="text" name="slipNumber" class="mt-1 w-full border rounded p-2">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium">Дата слипа (в пределах отчетного квартала,
+                                        до 25 числа следующего)</label>
+                                    <input type="date" name="slipDate" class="mt-1 w-full border rounded p-2">
+                                </div>
+                            </div>
+
+                            <div class="mt-4">
+                                <label class="block text-sm font-medium">Условия облигатора (отправлять вместе с
+                                    другими условиями)</label>
+                                <textarea name="obligatorCondition" class="mt-1 w-full border rounded p-2" rows="2"></textarea>
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-medium">Другие условия облигатора (обязательно, если
+                                    указано obligatorCondition)</label>
+                                <textarea name="obligatorOtherCondition" class="mt-1 w-full border rounded p-2" rows="2"></textarea>
+                            </div>
+                        </section>
+
+                        <!-- Период перестрахования -->
+                        <section>
+                            <h2 class="text-xl font-semibold mb-4 border-b pb-2 text-gray-800">2. Период
+                                перестрахования</h2>
+                            <div class="grid md:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-sm font-medium">Начало периода (в пределах отчетного
+                                        квартала, до 25 числа следующего)</label>
+                                    <input type="date" name="reinsuranceStartDate"
+                                        class="mt-1 w-full border rounded p-2">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium">Конец периода (только для активного
+                                        договора или истекшего до 25 числа следующего)</label>
+                                    <input type="date" name="reinsuranceEndDate"
+                                        class="mt-1 w-full border rounded p-2">
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- Финансовые параметры -->
+                        <section>
+                            <h2 class="text-xl font-semibold mb-4 border-b pb-2 text-gray-800">3. Финансовые параметры
+                            </h2>
+                            <div class="grid md:grid-cols-3 gap-4">
+                                <div>
+                                    <label class="block text-sm font-medium">Доля перестрахователя в ин. валюте
+                                        (обязательно, если currencyId)</label>
+                                    <input type="number" name="reinsurantShareInForeignCurrency"
+                                        class="mt-1 w-full border rounded p-2" step="0.01">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium">Доля перестрахователя в сум</label>
+                                    <input type="number" name="reinsurantShare"
+                                        class="mt-1 w-full border rounded p-2" step="0.01">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium">Доля перестрахователя в %</label>
+                                    <input type="number" name="reinsurantShareInPercents"
+                                        class="mt-1 w-full border rounded p-2" step="0.01">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium">Лимит перестраховщика в ин. валюте
+                                        (обязательно, если currencyId)</label>
+                                    <input type="number" name="reinsurerLimitInForeignCurrency"
+                                        class="mt-1 w-full border rounded p-2" step="0.01">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium">Лимит перестраховщика в сум</label>
+                                    <input type="number" name="reinsurerLimit"
+                                        class="mt-1 w-full border rounded p-2" step="0.01">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium">Лимит перестраховщика в %</label>
+                                    <input type="number" name="reinsurerLimitInPercents"
+                                        class="mt-1 w-full border rounded p-2" step="0.01">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium">Брутто перестраховочная премия в ин.
+                                        валюте (обязательно, если currencyId)</label>
+                                    <input type="number" name="bruttoInsurancePremiumInForeignCurrency"
+                                        class="mt-1 w-full border rounded p-2" step="0.01">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium">Брутто перестраховочная премия в
+                                        сум</label>
+                                    <input type="number" name="bruttoInsurancePremium"
+                                        class="mt-1 w-full border rounded p-2" step="0.01">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium">Брутто ставка в %</label>
+                                    <input type="number" name="bruttoInsurancePremiumInPercents"
+                                        class="mt-1 w-full border rounded p-2" step="0.01">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium">Комиссия в ин. валюте (обязательно, если
+                                        currencyId)</label>
+                                    <input type="number" name="commissionInForeignCurrency"
+                                        class="mt-1 w-full border rounded p-2" step="0.01">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium">Комиссия в сум</label>
+                                    <input type="number" name="commission" class="mt-1 w-full border rounded p-2"
+                                        step="0.01">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium">Комиссия в %</label>
+                                    <input type="number" name="commissionInPercents"
+                                        class="mt-1 w-full border rounded p-2" step="0.01">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium">Нетто перестраховочная премия в ин. валюте
+                                        (обязательно, если currencyId)</label>
+                                    <input type="number" name="nettoInsurancePremiumInForeignCurrency"
+                                        class="mt-1 w-full border rounded p-2" step="0.01">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium">Нетто перестраховочная премия в
+                                        сум</label>
+                                    <input type="number" name="nettoInsurancePremium"
+                                        class="mt-1 w-full border rounded p-2" step="0.01">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium">Нетто ставка в %</label>
+                                    <input type="number" name="nettoInsurancePremiumInPercents"
+                                        class="mt-1 w-full border rounded p-2" step="0.01">
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- Брокер и ковернот -->
+                        <section>
+                            <h2 class="text-xl font-semibold mb-4 border-b pb-2 text-gray-800">4. Брокерские параметры
+                            </h2>
+                            <div class="grid md:grid-cols-3 gap-4">
+                                <div>
+                                    <label class="block text-sm font-medium">Размер комиссии страхового брокера</label>
+                                    <input type="number" name="brokerCommission"
+                                        class="mt-1 w-full border rounded p-2" step="0.01">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium">Размер комиссии брокера в ин.
+                                        валюте</label>
+                                    <input type="number" name="brokerCommissionInForeignCurrency"
+                                        class="mt-1 w-full border rounded p-2" step="0.01">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium">ID брокера</label>
+                                    <input type="text" name="brokerId" class="mt-1 w-full border rounded p-2">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium">№ ковернота (обязательно, если
+                                        brokerId)</label>
+                                    <input type="text" name="covernoteNumber"
+                                        class="mt-1 w-full border rounded p-2">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium">Дата ковернота (обязательно, если
+                                        brokerId)</label>
+                                    <input type="date" name="covernoteDate"
+                                        class="mt-1 w-full border rounded p-2">
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- Валюта и курс -->
+                        <section>
+                            <h2 class="text-xl font-semibold mb-4 border-b pb-2 text-gray-800">5. Валюта и курс</h2>
+                            <div class="grid md:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-sm font-medium">ID валюты
+                                        (/api/references/currencies)</label>
+                                    <input type="text" name="currencyId" class="mt-1 w-full border rounded p-2">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium">Курс валюты (обязательно, если
+                                        currencyId)</label>
+                                    <input type="number" name="exchangeRate" class="mt-1 w-full border rounded p-2"
+                                        step="0.0001">
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- Начисления и оплаты -->
+                        <section>
+                            <h2 class="text-xl font-semibold mb-4 border-b pb-2 text-gray-800">6. Начисления и оплаты
+                            </h2>
+                            <div class="grid md:grid-cols-3 gap-4">
+                                <div>
+                                    <label class="block text-sm font-medium">Нетто перестраховочная премия для
+                                        начисления</label>
+                                    <input type="number" name="nettoAccrualPremium"
+                                        class="mt-1 w-full border rounded p-2" step="0.01">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium">Дата начисления</label>
+                                    <input type="date" name="nettoAccrualDate"
+                                        class="mt-1 w-full border rounded p-2">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium">Комиссия для начисления</label>
+                                    <input type="number" name="nettoAccrualCommission"
+                                        class="mt-1 w-full border rounded p-2" step="0.01">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium">Брутто перестраховочная премия для
+                                        начисления</label>
+                                    <input type="number" name="bruttoAccrualPremium"
+                                        class="mt-1 w-full border rounded p-2" step="0.01">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium">Срок оплаты 100% премии</label>
+                                    <input type="date" name="deadlineForFullPremiumPayment"
+                                        class="mt-1 w-full border rounded p-2">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium">Сумма оплаченной премии</label>
+                                    <input type="number" name="paidPremium" class="mt-1 w-full border rounded p-2"
+                                        step="0.01">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium">Дата оплаченной премии</label>
+                                    <input type="date" name="premiumPaidDate"
+                                        class="mt-1 w-full border rounded p-2">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium">Тип оплаты
+                                        (/api/references/payment-conditions)</label>
+                                    <input type="text" name="paymentTypeId"
+                                        class="mt-1 w-full border rounded p-2">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium">Срок оплаты 1-го транша (обязательно, если
+                                        paymentTypeId=9)</label>
+                                    <input type="date" name="firstPaymentDeadline"
+                                        class="mt-1 w-full border rounded p-2">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium">Сумма оплаты 1-го транша (обязательно,
+                                        если paymentTypeId=9)</label>
+                                    <input type="number" name="firstPaymentSum"
+                                        class="mt-1 w-full border rounded p-2" step="0.01">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium">Дата оплаты 1-го транша (обязательно, если
+                                        paymentTypeId=9)</label>
+                                    <input type="date" name="firstPaymentDate"
+                                        class="mt-1 w-full border rounded p-2">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium">Сумма оплаченного 1-го транша
+                                        (обязательно, если paymentTypeId=9)</label>
+                                    <input type="number" name="firstPaymentPaidSum"
+                                        class="mt-1 w-full border rounded p-2" step="0.01">
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- Договоры -->
+                        <section id="contractsSection">
+                            <h2
+                                class="text-xl font-semibold mb-4 border-b pb-2 text-gray-800 flex justify-between items-center">
+                                7. Договоры
+                                <button type="button" id="addContractBtn"
+                                    class="bg-green-600 text-white px-4 py-1 rounded hover:bg-green-700">
+                                    + Добавить договор
+                                </button>
+                            </h2>
+                            <div id="contractsContainer" class="space-y-4"></div>
+                        </section>
+
+                        <!-- Кнопки -->
+                        <div class="flex gap-4 mt-8">
+                            <button type="button" id="showJsonBtn"
+                                class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+                                Показать JSON
+                            </button>
+                            <button type="reset" class="bg-gray-300 px-4 py-2 rounded hover:bg-gray-400">
+                                Очистить
+                            </button>
+                        </div>
+                    </form>
+
+                </div>
+                <!-- Error Messages -->
+                <div id="errorOutput" class="mt-8 bg-red-100 border border-red-400 rounded p-4 hidden">
+                    <h3 class="font-semibold mb-2 text-red-800">Ошибки валидации:</h3>
+                    <ul id="errorList" class="text-sm text-red-700 list-disc pl-5"></ul>
+                </div>
+
+                <!-- JSON Output -->
+                <div id="jsonOutput" class="mt-8 bg-gray-50 border rounded p-4 hidden">
+                    <h3 class="font-semibold mb-2 text-gray-800">Сформированные данные:</h3>
+                    <pre class="text-sm text-gray-700 overflow-auto"></pre>
+                    <button type="button" id="hideJsonBtn"
+                        class="mt-4 bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700">
+                        Скрыть JSON
+                    </button>
+                </div>
+
+        </div>
+        </main>
+    </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
+    <script>
+        const form = document.getElementById('agreementForm');
+        const addContractBtn = document.getElementById('addContractBtn');
+        const contractsContainer = document.getElementById('contractsContainer');
+        const showJsonBtn = document.getElementById('showJsonBtn');
+        const jsonOutput = document.getElementById('jsonOutput');
+        const hideJsonBtn = document.getElementById('hideJsonBtn');
+        const errorOutput = document.getElementById('errorOutput');
+        const errorList = document.getElementById('errorList');
+
+        // Функция для проверки даты на соответствие кварталу
+        function isDateAllowed(dateStr) {
+            if (!dateStr) return true;
+            const current = new Date('2025-10-09');
+            const d = new Date(dateStr);
+            const year = d.getFullYear();
+            const month = d.getMonth();
+            const quarter = Math.floor(month / 3) + 1;
+            let quarterStart, quarterEnd;
+            if (quarter === 1) {
+                quarterStart = new Date(year, 0, 1);
+                quarterEnd = new Date(year, 2, 31);
+            } else if (quarter === 2) {
+                quarterStart = new Date(year, 3, 1);
+                quarterEnd = new Date(year, 5, 30);
+            } else if (quarter === 3) {
+                quarterStart = new Date(year, 6, 1);
+                quarterEnd = new Date(year, 8, 30);
+            } else {
+                quarterStart = new Date(year, 9, 1);
+                quarterEnd = new Date(year, 11, 31);
+            }
+            if (d < quarterStart || d > quarterEnd) {
+                return false;
+            }
+            let nextQuarterYear = year;
+            let nextQuarterMonth = (quarter * 3) % 12;
+            if (nextQuarterMonth === 0) {
+                nextQuarterMonth = 0;
+                nextQuarterYear++;
+            }
+            const allowanceEnd = new Date(nextQuarterYear, nextQuarterMonth, 25);
+            if (current > allowanceEnd) {
+                return false;
+            }
+            return true;
+        }
+
+        // Валидация формы
+        function validateForm(data, contracts) {
+            const errors = [];
+
+            // Обязательные поля
+            if (!data.reinsuranceContractUuid) errors.push('UUID договора перестрахования обязателен');
+            if (!data.additionalAgreementNumber) errors.push('Номер доп. соглашения обязателен');
+            if (!data.additionalAgreementDate) errors.push('Дата доп. соглашения обязательна');
+
+            // Условия облигатора
+            if (data.obligatorCondition && !data.obligatorOtherCondition) {
+                errors.push('Другие условия облигатора обязательны, если указаны условия облигатора');
+            }
+
+            // Валюта
+            if (data.currencyId) {
+                if (!data.exchangeRate) errors.push('Курс валюты обязателен, если указан ID валюты');
+                if (!data.reinsurantShareInForeignCurrency) errors.push(
+                    'Доля перестрахователя в ин. валюте обязательна, если currencyId');
+                if (!data.reinsurerLimitInForeignCurrency) errors.push(
+                    'Лимит перестраховщика в ин. валюте обязателен, если currencyId');
+                if (!data.bruttoInsurancePremiumInForeignCurrency) errors.push(
+                    'Брутто перестраховочная премия в ин. валюте обязательна, если currencyId');
+                if (!data.commissionInForeignCurrency) errors.push('Комиссия в ин. валюте обязательна, если currencyId');
+                if (!data.nettoInsurancePremiumInForeignCurrency) errors.push(
+                    'Нетто перестраховочная премия в ин. валюте обязательна, если currencyId');
+            }
+
+            // Брокер
+            if (data.brokerId) {
+                if (!data.covernoteNumber) errors.push('№ ковернота обязателен, если указан ID брокера');
+                if (!data.covernoteDate) errors.push('Дата ковернота обязательна, если указан ID брокера');
+            }
+
+            // Оплата
+            if (data.paymentTypeId === '9') {
+                if (!data.firstPaymentDeadline) errors.push('Срок оплаты 1-го транша обязателен, если paymentTypeId=9');
+                if (!data.firstPaymentSum) errors.push('Сумма оплаты 1-го транша обязательна, если paymentTypeId=9');
+                if (!data.firstPaymentDate) errors.push('Дата оплаты 1-го транша обязательна, если paymentTypeId=9');
+                if (!data.firstPaymentPaidSum) errors.push(
+                    'Сумма оплаченного 1-го транша обязательна, если paymentTypeId=9');
+            }
+
+            // Даты с квартальными ограничениями
+            if (data.additionalAgreementDate && !isDateAllowed(data.additionalAgreementDate)) {
+                errors.push('Дата доп. соглашения не соответствует квартальным ограничениям');
+            }
+            if (data.slipDate && !isDateAllowed(data.slipDate)) {
+                errors.push('Дата слипа не соответствует квартальным ограничениям');
+            }
+            if (data.reinsuranceStartDate && !isDateAllowed(data.reinsuranceStartDate)) {
+                errors.push('Начало периода перестрахования не соответствует квартальным ограничениям');
+            }
+
+            // Валидация договоров
+            contracts.forEach((contract, index) => {
+                if (contract.isForeign === '1') {
+                    if (!contract.contractNumber) errors.push(
+                        `Договор ${index + 1}: Номер договора обязателен для иностранного договора`);
+                    if (contract.contractDelete !== '1') {
+                        // Если не удаление, проверить другие поля для добавления/изменения
+                        if (!contract.contractIssueDate) errors.push(
+                            `Договор ${index + 1}: Дата договора обязательна`);
+                        if (!contract.insuranceFormId) errors.push(
+                            `Договор ${index + 1}: Форма страхования обязательна`);
+                        if (!contract.insuranceProductName) errors.push(
+                            `Договор ${index + 1}: Наименование страхового продукта обязательно`);
+                        if (!contract.insurantName) errors.push(
+                            `Договор ${index + 1}: Наименование страхователя обязательно`);
+                        if (!contract.classes) errors.push(`Договор ${index + 1}: Классы страхования обязательны`);
+                        if (!contract.foreignInsuranceOrgId && !contract.insuranceOrgId) errors.push(
+                            `Договор ${index + 1}: Страховщик обязателен`);
+                        if (!contract.countryId) errors.push(
+                            `Договор ${index + 1}: Территория страхования обязательна`);
+                        if (!contract.startDate) errors.push(
+                            `Договор ${index + 1}: Начало периода страхования обязательно`);
+                        if (!contract.endDate) errors.push(
+                            `Договор ${index + 1}: Конец периода страхования обязательно`);
+                        if (contract.currencyId) {
+                            if (!contract.exchangeRate) errors.push(
+                                `Договор ${index + 1}: Курс валюты обязателен, если currencyId`);
+                            if (!contract.insuranceSumInForeignCurrency) errors.push(
+                                `Договор ${index + 1}: Страховая сумма в ин. валюте обязательна, если currencyId`
+                                );
+                        }
+                    }
+                } else {
+                    if (!contract.contractUuid) errors.push(
+                        `Договор ${index + 1}: UUID договора обязателен для местного договора`);
+                }
+            });
+
+            return errors;
+        }
+
+        // Добавление договора
+        addContractBtn.addEventListener('click', () => {
+            const div = document.createElement('div');
+            div.className = "border p-4 rounded bg-gray-50 relative";
+            div.innerHTML = `
         <button type="button" class="absolute top-2 right-2 text-red-600 hover:text-red-800 font-bold removeContract">×</button>
         <div class="grid md:grid-cols-2 gap-4">
           <div>
@@ -474,52 +731,55 @@
           </div>
         </div>
       `;
-      contractsContainer.appendChild(div);
-    });
-
-    // Удаление договора
-    contractsContainer.addEventListener('click', e => {
-      if (e.target.classList.contains('removeContract')) {
-        e.target.parentElement.remove();
-      }
-    });
-
-    // Показ JSON с валидацией
-    showJsonBtn.addEventListener('click', () => {
-      const formData = new FormData(form);
-      const data = Object.fromEntries(formData.entries());
-      const contracts = [];
-      contractsContainer.querySelectorAll('div.border').forEach(block => {
-        const obj = {};
-        block.querySelectorAll('input').forEach(input => {
-          if (input.value) obj[input.name] = input.value;
+            contractsContainer.appendChild(div);
         });
-        contracts.push(obj);
-      });
 
-      const errors = validateForm(data, contracts);
-
-      if (errors.length > 0) {
-        errorList.innerHTML = '';
-        errors.forEach(error => {
-          const li = document.createElement('li');
-          li.textContent = error;
-          errorList.appendChild(li);
+        // Удаление договора
+        contractsContainer.addEventListener('click', e => {
+            if (e.target.classList.contains('removeContract')) {
+                e.target.parentElement.remove();
+            }
         });
-        errorOutput.classList.remove('hidden');
-        jsonOutput.classList.add('hidden');
-      } else {
-        errorOutput.classList.add('hidden');
-        data.contracts = contracts;
-        jsonOutput.querySelector('pre').textContent = JSON.stringify(data, null, 2);
-        jsonOutput.classList.remove('hidden');
-      }
-    });
 
-    // Скрытие JSON
-    hideJsonBtn.addEventListener('click', () => {
-      jsonOutput.classList.add('hidden');
-    });
-  </script>
+        // Показ JSON с валидацией
+        showJsonBtn.addEventListener('click', () => {
+            const formData = new FormData(form);
+            const data = Object.fromEntries(formData.entries());
+            const contracts = [];
+            contractsContainer.querySelectorAll('div.border').forEach(block => {
+                const obj = {};
+                block.querySelectorAll('input').forEach(input => {
+                    if (input.value) obj[input.name] = input.value;
+                });
+                contracts.push(obj);
+            });
+
+            const errors = validateForm(data, contracts);
+
+            if (errors.length > 0) {
+                errorList.innerHTML = '';
+                errors.forEach(error => {
+                    const li = document.createElement('li');
+                    li.textContent = error;
+                    errorList.appendChild(li);
+                });
+                errorOutput.classList.remove('hidden');
+                jsonOutput.classList.add('hidden');
+            } else {
+                errorOutput.classList.add('hidden');
+                data.contracts = contracts;
+                jsonOutput.querySelector('pre').textContent = JSON.stringify(data, null, 2);
+                jsonOutput.classList.remove('hidden');
+            }
+        });
+
+        // Скрытие JSON
+        hideJsonBtn.addEventListener('click', () => {
+            jsonOutput.classList.add('hidden');
+        });
+    </script>
+
+
 </body>
+
 </html>
