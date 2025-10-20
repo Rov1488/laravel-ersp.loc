@@ -10,6 +10,7 @@ use function Laravel\Prompts\note;
 use Illuminate\Support\Facades\Validator;
 use function MongoDB\BSON\toJSON;
 use App\Events\OrderShipmentStatusUpdated;
+use Illuminate\Support\Carbon;
 
 class PostController extends Controller
 {
@@ -20,6 +21,9 @@ class PostController extends Controller
         // $session_id = session_id();
         // dd($_SESSION);
        $applicant = new PostCollection(Post::paginate(10));
+       //$firtsPost = Post::select('created_at')->first();
+        //$applicant = Post::orderBy('created_at', 'desc')->rawValue("YEAR (`$firtsPost->created_at`)")->get();
+        //dd($applicant);    
         //return $applicant; //->toJson(JSON_PRETTY_PRINT)
         return view('posts.index', ['applicant' => $applicant]);
     }

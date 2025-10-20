@@ -130,8 +130,17 @@ Route::any('/form-bk', function (){
 })->name('form-bk');
 
 Route::get('/rating-progress', function () {
-    return view('rating-progress');
+    return view('rating.rating-progress');
 })->name('rating-progress');
+
+Route::get('/rating-progress-2', function () {
+    return view('rating.rating-progress-2');
+})->name('rating-progress-2');
+
+Route::get('/rating-progress-3', function () {
+    return view('rating.rating-progress-3');
+})->name('rating-progress-3');
+
 Route::get('/generate-pdf', [ExportController::class, 'generatePdf'])->name('generate-pdf');
 
 Route::get('/vertical-tab', function(){
