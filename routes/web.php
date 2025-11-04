@@ -171,4 +171,7 @@ Route::get('/dopdocs-form', function(){
     return view('npk.dopdocs-form');
 })->name('dopdocs-form');
 
+Route::get('/offer-form', function(){
+    return view('npk.offer-form');
+})->name('offer-form');
 
