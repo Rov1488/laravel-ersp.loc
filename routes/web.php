@@ -175,3 +175,7 @@ Route::get('/offer-form', function(){
     return view('npk.offer-form');
 })->name('offer-form');
 
+Route::get('/ersp-dashboard', function(){
+    return view('ersp-dashboard');
+})->name('ersp-dashboard');
+
