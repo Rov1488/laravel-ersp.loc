@@ -167,6 +167,10 @@ Route::get('/form-test', function(){
     return view('npk.form-test');
 })->name('form-test');
 
+Route::get('/fin-block', function(){
+    return view('npk.fin-block');
+})->name('fin-block');
+
 Route::get('/dopdocs-form', function(){
     return view('npk.dopdocs-form');
 })->name('dopdocs-form');
@@ -179,3 +183,6 @@ Route::get('/ersp-dashboard', function(){
     return view('ersp-dashboard');
 })->name('ersp-dashboard');
 
+Route::get('/ersp-dashboard-2', function(){
+    return view('ersp-dashboard2');
+})->name('ersp-dashboard-2');
