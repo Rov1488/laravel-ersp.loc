@@ -129,6 +129,10 @@ Route::any('/form-bk', function (){
     return view('napp-license.form-bk');
 })->name('form-bk');
 
+Route::get('/rating', function () {
+    return view('rating.index');
+})->name('rating');
+
 Route::get('/rating-progress', function () {
     return view('rating.rating-progress');
 })->name('rating-progress');

@@ -7,6 +7,18 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-100 p-8">
+@php
+    // $str = 'брат';
+    // $base64 = base64_encode($str);    
+    // echo "Base64 encoded string of '{$str}' is: {$base64}";
+    $jsonUnicode = json_encode('муж');
+    echo "JSON encoded string of 'брат' is: {$jsonUnicode}";
+    echo "<br>";
+    $text = "\u0424\u0438\u0437\u0438\u0447\u0435\u0441\u043a\u043e\u0435 \u043b\u0438\u0446\u043e";
+    echo json_decode($text);
+@endphp
+
+    
     <div class="max-w-2xl mx-auto bg-white shadow-lg rounded-lg p-6">
         <h1 class="text-2xl font-bold mb-6 text-center">Фин. блок</h1>
         
