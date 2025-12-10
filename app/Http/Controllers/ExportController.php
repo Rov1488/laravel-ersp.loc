@@ -21,7 +21,7 @@ class ExportController extends Controller
             ->orderBy('created_at', 'desc');
         //$post = Post::cursor();
 
-        //dd($posts->id);
+        //dd($post->first()->id);
         $excel = Excel::create('Posts');
         $sheet = $excel->sheet();
         // Write attribute names
@@ -30,36 +30,56 @@ class ExportController extends Controller
         $area = $sheet->beginArea();
 
         // Write headers to area, column letters are case independent
-        $area
-            ->setValue('A4', 'ID')
-            ->setValue('B4', 'title')
-            ->setValue('C4', 'Slug')
-            ->setValue('D5', 'Category ID')
-            ->setValue('E5', 'Language')
-            ->setValue('F5', 'Description')
-            ->setValue('G5', 'Content post')
-            ->setValue('H5', 'Image')
-            ->setValue('I5', 'User ID')
-            ->setValue('J5', 'Author ID')
-            ->setValue('K5', 'Created date')
-        ;
 
-        $area->setValue('A5', $post->id);
-        $area->setValue('B5', $post->title);
-        $area->setValue('C5', $post->slug);
-        $area->setValue('D5', $post->category_id);
-        $area->setValue('E5', $post->language);
-        $area->setValue('F5', $post->description);
-        $area->setValue('G5', $post->content);
-        $area->setValue('H5', $post->image);
-        $area->setValue('I5', $post->user_id);
-        $area->setValue('J5', $post->author_id);
-        $area->setValue('K5', $post->created_at);
-        $sheet->writeAreas();
+        $row = 5;
 
-        $excel->save('expor-file_' . now()->format('Y-m-d_His') . '.xlsx');
+        foreach ($post->cursor() as $item) {
+            $area->setValue("A{$row}", $item->id);
+            $area->setValue("B{$row}", $item->title);
+            $area->setValue("C{$row}", $item->slug);
+            $area->setValue("D{$row}", $item->category_id);
+            $area->setValue("E{$row}", $item->language);
+            $area->setValue("F{$row}", $item->description);
+            $area->setValue("G{$row}", $item->content);
+            $area->setValue("H{$row}", $item->image);
+            $area->setValue("I{$row}", $item->user_id);
+            $area->setValue("J{$row}", $item->author_id);
+            $area->setValue("K{$row}", $item->created_at);
 
-        return view('export-file.export');
+            $row++;
+        }
+        // $area
+        //     ->setValue('A4', 'ID')
+        //     ->setValue('B4', 'title')
+        //     ->setValue('C4', 'Slug')
+        //     ->setValue('D5', 'Category ID')
+        //     ->setValue('E5', 'Language')
+        //     ->setValue('F5', 'Description')
+        //     ->setValue('G5', 'Content post')
+        //     ->setValue('H5', 'Image')
+        //     ->setValue('I5', 'User ID')
+        //     ->setValue('J5', 'Author ID')
+        //     ->setValue('K5', 'Created date')
+        // ;
+
+        // $area->setValue('A5', $post->id);
+        // $area->setValue('B5', $post->title);
+        // $area->setValue('C5', $post->slug);
+        // $area->setValue('D5', $post->category_id);
+        // $area->setValue('E5', $post->language);
+        // $area->setValue('F5', $post->description);
+        // $area->setValue('G5', $post->content);
+        // $area->setValue('H5', $post->image);
+        // $area->setValue('I5', $post->user_id);
+        // $area->setValue('J5', $post->author_id);
+        // $area->setValue('K5', $post->created_at);
+        // $sheet->writeAreas();
+        
+       if($excel->save('expor-file_' . now()->format('Y-m-d_His') . '.xlsx')){
+            return response('success excel file generation good');
+       }
+
+        //return view('export-file.export');
     }
 
     public function excelExportGrok()
@@ -195,23 +215,23 @@ class ExportController extends Controller
         $pdf->setPDFVersion('1.7');
         $templatedFile = storage_path('app/public/mayning_ruxsatnoma_shablon (1).pdf'); // mayning_ruxsatnoma_shablon.pdf
         // Добавляем страницу из шаблона
-    $pageCount = $pdf->setSourceFile($templatedFile);
-    $templateId = $pdf->importPage(1); // импортируем первую страницу
-    
-    // Добавляем страницу в новый документ
-    $pdf->AddPage();
-    $pdf->useTemplate($templateId);   
-    // $pdf->setCreator('Laravel PDF Generator');
-    // $pdf->setAuthor('Your Name');
-    // $pdf->setTitle('Generated PDF');
-    // $pdf->setSubject('PDF Generation Example');
-    // Устанавливаем шрифт и добавляем текст
-    $pdf->SetFont('Helvetica');
-    $pdf->SetTextColor(0, 0, 0);
-    $pdf->SetXY(50, 50);
-    $pdf->Write(0, 'Hello World!');
-    
-    // Сохраняем или отдаем файл
-    return $pdf->Output('generated.pdf', 'I');        
+        $pageCount = $pdf->setSourceFile($templatedFile);
+        $templateId = $pdf->importPage(1); // импортируем первую страницу
+
+        // Добавляем страницу в новый документ
+        $pdf->AddPage();
+        $pdf->useTemplate($templateId);
+        // $pdf->setCreator('Laravel PDF Generator');
+        // $pdf->setAuthor('Your Name');
+        // $pdf->setTitle('Generated PDF');
+        // $pdf->setSubject('PDF Generation Example');
+        // Устанавливаем шрифт и добавляем текст
+        $pdf->SetFont('Helvetica');
+        $pdf->SetTextColor(0, 0, 0);
+        $pdf->SetXY(50, 50);
+        $pdf->Write(0, 'Hello World!');
+
+        // Сохраняем или отдаем файл
+        return $pdf->Output('generated.pdf', 'I');
     }
 }
