@@ -74,10 +74,10 @@ class ExportController extends Controller
         // $area->setValue('J5', $post->author_id);
         // $area->setValue('K5', $post->created_at);
         // $sheet->writeAreas();
-        
-       if($excel->save('expor-file_' . now()->format('Y-m-d_His') . '.xlsx')){
+
+        if ($excel->save('expor-file_' . now()->format('Y-m-d_His') . '.xlsx')) {
             return response('success excel file generation good');
-       }
+        }
 
         //return view('export-file.export');
     }
@@ -234,35 +234,29 @@ class ExportController extends Controller
         // Сохраняем или отдаем файл
         return $pdf->Output('generated.pdf', 'I');
     }
-
-
-
-
-   public function testApi()
-   {
+    // Test use API with cURL RECLAIM upload payout file
+    public function testApi()
+    {
         $curl = curl_init();
 
-curl_setopt_array($curl, array(
-  CURLOPT_URL => 'https://sandboxerspapi.e-osgo.uz/api/v3/reclaim/upload-payout-file',
-  CURLOPT_RETURNTRANSFER => true,
-  CURLOPT_ENCODING => '',
-  CURLOPT_MAXREDIRS => 10,
-  CURLOPT_TIMEOUT => 0,
-  CURLOPT_FOLLOWLOCATION => true,
-  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-  CURLOPT_CUSTOMREQUEST => 'POST',
-  CURLOPT_POSTFIELDS => array('reClaimUuid' => '98cda636-e0d1-4bab-b1f7-876424f28921','file'=> new CURLFILE('/C:/Users/r_pulatov/Downloads/RECLAIM V2.pdf')),
-  CURLOPT_HTTPHEADER => array(
-    'Authorization: Basic ' . env('BEARER_TOKEN')
-  ),
-));
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => 'https://sandboxerspapi.e-osgo.uz/api/v3/reclaim/upload-payout-file',
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => '',
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => 'POST',
+            CURLOPT_POSTFIELDS => array('reClaimUuid' => '98cda636-e0d1-4bab-b1f7-876424f28921', 'file' => new CURLFILE('/C:/Users/r_pulatov/Downloads/RECLAIM V2.pdf')),
+            CURLOPT_HTTPHEADER => array(
+                'Authorization: Basic ' . env('BEARER_TOKEN')
+            ),
+        ));
 
-$response = curl_exec($curl);
+        $response = curl_exec($curl);
 
-curl_close($curl);
-echo $response;
-   }
-
-
-
+        curl_close($curl);
+        echo $response;
+    }
 }

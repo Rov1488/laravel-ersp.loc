@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Api\SwaggerController;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class UserController extends SwaggerController
@@ -28,10 +29,8 @@ class UserController extends SwaggerController
      */
     public function index()
     {
-        return response()->json([
-            ['id' => 1, 'name' => 'Иван', 'email' => 'ivan@example.com'],
-            ['id' => 2, 'name' => 'Мария', 'email' => 'maria@example.com'],
-        ]);
+        $users = User::select('id', 'name', 'email')->paginate(3);
+        return response()->json($users);
     }
 
     /**
@@ -51,9 +50,8 @@ class UserController extends SwaggerController
      *         response=201,
      *         description="Пользователь успешно создан",
      *         @OA\JsonContent(
-     *             @OA\Property(property="id", type="integer", example=3),
-     *             @OA\Property(property="name", type="string", example="Анна"),
-     *             @OA\Property(property="email", type="string", example="anna@example.com")
+     *             @OA\Property(property="error", type="string", example="0"),
+     *             @OA\Property(property="message", type="string", example="Пользователь успешно создан")
      *         )
      *     ),
      *     @OA\Response(
@@ -64,11 +62,21 @@ class UserController extends SwaggerController
      */
     public function store(Request $request)
     {
-        // Здесь должна быть логика создания пользователя
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|string|min:6',
+        ]);
+
+        User::create([
+            'name' => $validated['name'],
+            'email' => $validated['email'],
+            'password' => bcrypt($validated['password']),
+        ]);
+
         return response()->json([
-            'id' => 3,
-            'name' => $request->input('name'),
-            'email' => $request->input('email'),
+            "error" => "0",
+            "message" => "Пользователь успешно создан",
         ], 201);
     }
 }

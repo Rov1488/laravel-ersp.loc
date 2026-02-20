@@ -89,17 +89,13 @@
                             "application/json": {
                                 "schema": {
                                     "properties": {
-                                        "id": {
-                                            "type": "integer",
-                                            "example": 3
-                                        },
-                                        "name": {
+                                        "error": {
                                             "type": "string",
-                                            "example": "Анна"
+                                            "example": "0"
                                         },
-                                        "email": {
+                                        "message": {
                                             "type": "string",
-                                            "example": "anna@example.com"
+                                            "example": "Пользователь успешно создан"
                                         }
                                     },
                                     "type": "object"
