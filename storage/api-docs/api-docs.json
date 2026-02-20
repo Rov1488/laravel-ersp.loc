@@ -15,6 +15,104 @@
         }
     ],
     "paths": {
+        "/api/posts": {
+            "get": {
+                "tags": [
+                    "Posts"
+                ],
+                "summary": "Получить список постов",
+                "operationId": "3fda362e2e082b5357ac416e7767e435",
+                "responses": {
+                    "200": {
+                        "description": "Список постов",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "id": {
+                                                "type": "integer",
+                                                "example": 1
+                                            },
+                                            "title": {
+                                                "type": "string",
+                                                "example": "Первый пост"
+                                            },
+                                            "content": {
+                                                "type": "string",
+                                                "example": "Содержание первого поста"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/posts/{post_id}/{title}": {
+            "get": {
+                "tags": [
+                    "Posts"
+                ],
+                "summary": "Получить пост по ID и названию",
+                "operationId": "e1ed969d28d0072a12ec8d9adb9e1fcb",
+                "parameters": [
+                    {
+                        "name": "post_id",
+                        "in": "path",
+                        "description": "ID поста",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 1
+                        }
+                    },
+                    {
+                        "name": "title",
+                        "in": "path",
+                        "description": "Название поста",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "Первый пост"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Пост найден",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer",
+                                            "example": 1
+                                        },
+                                        "title": {
+                                            "type": "string",
+                                            "example": "Первый пост"
+                                        },
+                                        "content": {
+                                            "type": "string",
+                                            "example": "Содержание первого поста"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Пост не найден"
+                    }
+                }
+            }
+        },
         "/api/users": {
             "get": {
                 "tags": [
@@ -111,6 +209,10 @@
         }
     },
     "tags": [
+        {
+            "name": "Posts",
+            "description": "Posts"
+        },
         {
             "name": "Users",
             "description": "Users"
