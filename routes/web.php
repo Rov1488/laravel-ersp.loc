@@ -10,7 +10,7 @@ use App\Http\Middleware\EnsureTokenIsValid;
 use App\Livewire\Counter;
 use Firebase\JWT\JWT;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PracticController;
+//use App\Http\Controllers\PracticController;
 
     /*Доступные методы маршрутизатора
 Маршрутизатор позволяет регистрировать маршруты, которые отвечают на любой HTTP-команду:

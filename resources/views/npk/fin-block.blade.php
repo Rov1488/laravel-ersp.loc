@@ -16,6 +16,13 @@
     echo "<br>";
     $text = "\u0424\u0438\u0437\u0438\u0447\u0435\u0441\u043a\u043e\u0435 \u043b\u0438\u0446\u043e";
     echo json_decode($text);
+
+    if ("32" == (32 * 1.0000)) {
+        echo !!true;
+    }else{
+        echo !!false;
+    }
+
 @endphp
 
     
